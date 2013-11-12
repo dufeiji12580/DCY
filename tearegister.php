@@ -13,7 +13,6 @@ require_once 'calendar.php';
 <style type="text/css">
 body {
 	background-color: #CCCCCC;
-	margin-top: 0px;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -126,8 +125,8 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="200"><?php include("left_menu.php") ?></td>
-      <td width="626" rowspan="2"><form id="form1" name="form1" method="POST" action="teasavereg.php" onSubmit="return chkinput(this)">
+      <td width="200" valign="top"><?php include("left_menu.php") ?></td>
+      <td width="626" rowspan="2" valign="top"><form id="regform" name="regform" method="POST" action="teasavereg.php" onSubmit="return chkinput(this)">
   <div align="center">
     <table width="458" border="0">
       <tr>
@@ -138,7 +137,7 @@ body {
         <td colspan="2"><p>
           <label for="T_Username"></label>
           <input type="text" name="T_Username"  id="T_Username" />
-          <input type="button" name="button3" id="button3" onClick="chknc('teacher',form1.T_Username.value)" value="检查是否可用" />
+          <input type="button" name="button3" id="button3" onClick="chknc('teacher',regform.T_Username.value)" value="检查是否可用" />
         </p></td>
       </tr>
       <tr>
@@ -221,7 +220,7 @@ body {
       <td width="200" rowspan="2">&nbsp;</td>
     </tr>
     <tr>
-      <td><table width="200" border="0">
+      <td valign="top"><table width="200" border="0">
         <tr>
           <td width="194"> <?php
                 $cal = new Calendar($params);
@@ -230,7 +229,9 @@ body {
           </tr>
       </table></td>
     </tr>
+     <tr>
+    <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
+    </tr>
   </table>
 </div>
-
 </html>

@@ -19,7 +19,7 @@ require_once 'calendar.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>学生主页</title>
+<title>预约教师</title>
 </head>
 <style type="text/css">
 body {
@@ -35,12 +35,22 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="200" rowspan="2" valign="top"><?php include("left_menu_back.php") ?></td>
-      <td width="638">你好</td>
-      <td width="188" rowspan="3" valign="top"><?php include("right_menu_stu.php") ?></td>
-    </tr>
-    <tr>
-      <td rowspan="2">&nbsp;</td>
+      <td width="200" valign="top"><?php include("left_menu_back.php") ?></td>
+      <td width="638" rowspan="2" valign="top" align="center"><table width="330" border="0">
+        <tr>
+          <td width="95">&nbsp;</td>
+          <td width="225">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table></td>
+      <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php") ?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">

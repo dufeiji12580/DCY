@@ -15,13 +15,13 @@
         <td class = "di" height="50"><p align="center"><a href="freetimematch.php">空闲时间匹配</a></p></td>
       </tr>
       <tr>
+        <td class = "di" height="50"><p align="center"><a href="checksearchtea.php?username=">查看所有教师</p></td>
+      </tr>
+      <tr>
         <td class = "di" height="50"><p align="center">预约教师</p></td>
       </tr>
       <tr>
-        <td class = "di" height="50"><p align="center">&nbsp;</p></td>
-      </tr>
-      <tr>
-        <td class = "di" height="50"><p align="center">&nbsp;</p></td>
+        <td class = "di" height="50"><p align="center">查看留言</p></td>
       </tr>
 	  <tr>
         <td class = "di" height="50"><p align="center">&nbsp;</p></td>

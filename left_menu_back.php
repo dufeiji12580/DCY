@@ -1,13 +1,18 @@
+<?php require_once('Connections/myconn.php'); ?>
 <?php session_start();
 if(!$_SESSION[S_Username] && !$_SESSION[T_Username]){
 	 echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
 }
 else if($_SESSION[S_Username]){
-	$username = "<a href = \"stuindex.php\">$_SESSION[S_Username]</a>";
+	$sql=mysql_query("select S_Name from student where S_Username='".$_SESSION[S_Username]."'",$myconn);
+	$info=mysql_fetch_array($sql);
+	$username = "<a href = \"stuindex.php\">$info[S_Name]</a>";
 	$pathtochange = "<a href = \"stuchangeinfo.php\">修改资料</a>";
 }
 else{
-	$username = "<a href = \"teaindex.php\">$_SESSION[T_Username]</a>";
+	$sql=mysql_query("select T_Name from teacher where T_Username='".$_SESSION[T_Username]."'",$myconn);
+	$info=mysql_fetch_array($sql);
+	$username = "<a href = \"teaindex.php\">$info[T_Name]</a>";
 	$pathtochange = "<a href = \"teachangeinfo.php\">修改资料</a>";
 }
 ?>
@@ -16,7 +21,6 @@ else{
 
 .di {
 	background-color: #09F;
-}
 }
 </style>
 <table width="200" border="0">

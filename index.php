@@ -37,11 +37,11 @@ body {
     <tr>
     <td colspan="2"></tr>
     <tr>
-      <td width="200"><?php include($left) ?></td>
+      <td width="200" valign="top"><?php include($left) ?></td>
       <td width="830">&nbsp;</td>
     </tr>
     <tr>
-      <td><table width="200" border="0">
+      <td valign="top"><table width="200" border="0">
         <tr>
           <td width="194"> <?php
                 $cal = new Calendar($params);
@@ -50,6 +50,9 @@ body {
         </tr>
       </table></td>
       <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td  colspan="2" height="100" valign="bottom"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

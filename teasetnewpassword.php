@@ -88,13 +88,12 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="200"><?php include("left_menu.php") ?></td>
-      <td width="626" rowspan="2"><form id="form1" name="form1" method="post" action="teachecknewpassword.php" onSubmit="return chkuserinput(this)">
+      <td width="200" valign="top"><?php include("left_menu.php") ?></td>
+      <td width="626" rowspan="2"><form id="setnewform" name="setnewform" method="post" action="teachecknewpassword.php" onSubmit="return chkuserinput(this)">
       <div align="center">
   <table width="290" border="0">
       <tr>
-        <td>重设密码：
-        </div></td>
+        <td>重设密码：</td>
         <td>&nbsp;</td>
       </tr>
       <tr>
@@ -131,7 +130,7 @@ body {
         <td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="button" id="button" value="确定" /></td>
         <td>
           &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" name="button2" id="button2" value="重置" />
-        </div></td>
+        </td>
       </tr>
     </table></div>
     <input type="hidden" value="<?php echo $info[T_Username];?>" name="T_Username">
@@ -141,12 +140,15 @@ body {
     <tr>
       <td><table width="200" border="0">
         <tr>
-          <td width="194"> <?php
+          <td width="194" valign="top"> <?php
                 $cal = new Calendar($params);
                 $cal->display();
             ?></td>
           </tr>
       </table></td>
+    </tr>
+    <tr>
+    <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

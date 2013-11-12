@@ -15,7 +15,7 @@ body {
 	background-color: #CCCCCC;
 }
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <script language="javascript">
   function chknc(table,name)
   {
@@ -117,8 +117,10 @@ body {
     return(true);
   }
 </script>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
 <title>学生注册</title>
 </head>
@@ -132,8 +134,8 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="200"><?php include("left_menu.php") ?></td>
-      <td width="626" rowspan="2"><form id="form1" name="form1" method="POST" action="stusavereg.php" onSubmit="return chkinput(this)">
+      <td width="200" valign="top"><?php include("left_menu.php") ?></td>
+      <td width="626" rowspan="2" valign="top"><form id="regform" name="regform" method="POST" action="stusavereg.php" onSubmit="return chkinput(this)">
   <div align="center">
     <table width="458" border="0">
       <tr>
@@ -144,7 +146,7 @@ body {
         <td colspan="2"><p>
           <label for="S_Username"></label>
           <input type="text" name="S_Username"  id="S_Username" />
-          <input type="button" name="button3" id="button3" onClick="chknc('student',form1.S_Username.value)" value="检查是否可用" />
+          <input type="button" name="button3" id="button3" onClick="chknc('student',regform.S_Username.value)" value="检查是否可用" />
         </p></td>
       </tr>
       <tr>
@@ -232,7 +234,7 @@ body {
       <td width="200" rowspan="2">&nbsp;</td>
     </tr>
     <tr>
-      <td><table width="200" border="0">
+      <td valign="top"><table width="200" border="0">
         <tr>
           <td width="194"> <?php
                 $cal = new Calendar($params);
@@ -240,6 +242,9 @@ body {
             ?></td>
           </tr>
       </table></td>
+    </tr>
+    <tr>
+      <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

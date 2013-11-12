@@ -22,9 +22,7 @@
 	font-weight: bold;
 	font-size: 50px;
 }
-body,td,th {
-	font-family: "Arial Black", Gadget, sans-serif;
-}
+
 .font {
 	font-size: 13px;
 	font-family: "Arial Black", Gadget, sans-serif;
@@ -48,7 +46,7 @@ body,td,th {
 	color: #3300FF;
 }
 </style>
-<body>
+
 <div align="center">
   <table width="1024" border="0" background = "images\top.jpg">
     <tr>
@@ -65,7 +63,7 @@ body,td,th {
           <table width="432" border="0">
             <tr>
               <td width="426"><div align="center">
-                <form name="form1" method="post" action="searchtea.php">
+                <form name="form1" method="get" action="checksearchtea.php">
                   <img src="images/biao.gif" width="16" height="21">&nbsp;&nbsp;<span class="font">搜索教师：</span>
                   <input type="text" name="search" id="textfield">
                   <input name="submit" type="submit" class="buttoncss1" value="搜索">
@@ -80,4 +78,3 @@ body,td,th {
     </tr>
   </table>
 </div>
-</body>
