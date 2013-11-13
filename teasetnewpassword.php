@@ -1,8 +1,8 @@
 <?php require_once('Connections/myconn.php'); ?>
 <?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php 
-if($_POST[select] == "T_Username"){
-	$sql=mysql_query("select * from teacher where T_Username='".trim($_POST[nameoremail])."'",$myconn);
+if($_GET[select] == "T_Username"){
+	$sql=mysql_query("select * from teacher where T_Username='".trim($_GET[nameoremail])."'",$myconn);
 	$info=mysql_fetch_array($sql);
 	if($info == false){
 		echo "<script>alert('该用户名不存在!');history.back();</script>";
@@ -10,13 +10,23 @@ if($_POST[select] == "T_Username"){
 	}
 }
 else{
-	$sql=mysql_query("select * from teacher where T_Email='".trim($_POST[nameoremail])."'",$myconn);
+	$sql=mysql_query("select * from teacher where T_Email='".trim($_GET[nameoremail])."'",$myconn);
 	$info=mysql_fetch_array($sql);
 	if($info == false){
 		echo "<script>alert('该邮箱不存在!');history.back();</script>";
         exit;
 	}
 }
+?>
+<?php
+$params = array();
+if (isset($_GET['year']) && isset($_GET['month'])) {
+    $params = array(
+        'year' => $_GET['year'],
+        'month' => $_GET['month'],
+    );
+}
+require_once 'calendar.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -62,17 +72,7 @@ function chkuserinput(form){
 }
 </script>
 
-<?php
-$params = array();
-if (isset($_GET['year']) && isset($_GET['month'])) {
-    $params = array(
-        'year' => $_GET['year'],
-        'month' => $_GET['month'],
-    );
-}
-$params['url']  = 'index.php';
-require_once 'calendar.php';
-?>
+
 <style type="text/css">
 body {
 	background-color: #CCCCCC;
@@ -148,7 +148,7 @@ body {
       </table></td>
     </tr>
     <tr>
-    <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
+    <td  colspan="3"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

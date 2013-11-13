@@ -1,8 +1,8 @@
 <?php require_once('Connections/myconn.php'); ?>
 <?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php 
-if($_POST[select] == "S_Username"){
-	$sql=mysql_query("select * from student where S_Username='".trim($_POST[nameornumber])."'",$myconn);
+if($_GET[select] == "S_Username"){
+	$sql=mysql_query("select * from student where S_Username='".trim($_GET[nameornumber])."'",$myconn);
 	$info=mysql_fetch_array($sql);
 	if($info == false){
 		echo "<script>alert('该用户名不存在!');history.back();</script>";
@@ -10,7 +10,7 @@ if($_POST[select] == "S_Username"){
 	}
 }
 else{
-	$sql=mysql_query("select * from student where S_Number='".trim($_POST[nameornumber])."'",$myconn);
+	$sql=mysql_query("select * from student where S_Number='".trim($_GET[nameornumber])."'",$myconn);
 	$info=mysql_fetch_array($sql);
 	if($info == false){
 		echo "<script>alert('该学号不存在!');history.back();</script>";
@@ -26,7 +26,6 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-$params['url']  = 'index.php';
 require_once 'calendar.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -147,7 +146,7 @@ body {
       </table></td>
     </tr>
     <tr>
-      <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
+      <td  colspan="3"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

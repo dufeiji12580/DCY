@@ -244,7 +244,7 @@ body {
       </table></td>
     </tr>
     <tr>
-      <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
+      <td  colspan="3"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

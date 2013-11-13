@@ -24,7 +24,7 @@
         <td class = "di" height="50"><p align="center">查看留言</p></td>
       </tr>
 	  <tr>
-        <td class = "di" height="50"><p align="center">&nbsp;</p></td>
+        <td class = "di" height="50"><p align="center">查看预约情况</p></td>
       </tr>
   </table></td>
   </tr>

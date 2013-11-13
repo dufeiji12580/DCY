@@ -14,7 +14,6 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-$params['url']  = 'index.php';
 require_once ('calendar.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,7 +51,7 @@ body {
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td  colspan="2" height="100" valign="bottom"><?php include("bottom.php")?></td>
+      <td  colspan="2"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

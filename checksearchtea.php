@@ -13,7 +13,7 @@ else
 }
 ?>
 <?php
-$username = $_GET[username];
+$searchname = $_GET[search];
 $currentPage = $_SERVER["PHP_SELF"];
 
 $maxRows_Recordset1 = 10;
@@ -22,7 +22,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT T_Username, T_Name, T_Major FROM teacher where T_Name like '%".$search."%'";
+$query_Recordset1 = "SELECT FT_ID, T_Username, T_Name, T_Major FROM teacher where T_Name like '%".$searchname."%'";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -61,7 +61,6 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-$params['url']  = 'index.php';
 require_once ('calendar.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -105,7 +104,7 @@ body {
             </tr>
             <?php do { ?>
             <tr>
-            <td height = "30" class = "di" align="center" width="168"><a href="searchtea.php?username=<?php echo $row_Recordset1['T_Username']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
+            <td height = "30" class = "di" align="center" width="168"><a href="searchtea.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
             <td class = "di" align="center" width="172"><?php echo $row_Recordset1['T_Major']; ?></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
@@ -138,7 +137,7 @@ body {
       </table></td>
     </tr>
     <tr>
-      <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
+      <td  colspan="3"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

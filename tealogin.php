@@ -7,7 +7,6 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-$params['url']  = 'index.php';
 require_once 'calendar.php';
 ?>
 <style type="text/css">
@@ -118,7 +117,7 @@ function chkuserinput(form){
       </table></td>
     </tr>
     <tr>
-    <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
+    <td  colspan="3"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

@@ -4,6 +4,12 @@ if(!$_SESSION[S_Username]){
 	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
 }
 ?>
+<?php include("Connections/myconn.php");
+$stuorderteaftid = trim($_GET[ftid]);
+$sql = "select T_Name, T_Username from teacher where FT_ID = '".$stuorderteaftid."'";
+$result = mysql_query($sql,$myconn); 
+$stuorderteaname = mysql_fetch_array($result);
+?>
 <?php
 $params = array();
 if (isset($_GET['year']) && isset($_GET['month'])) {
@@ -12,7 +18,6 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-$params['url']  = 'index.php';
 require_once 'calendar.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -26,6 +31,16 @@ body {
 	background-color: #CCCCCC;
 }
 </style>
+<script language="javascript">
+function chkuserinput(form){
+	if(form.orderinfo.value==""){
+		alert("必须输入预约信息!");
+		form.orderinfo.select();
+		return(false);
+	}		
+	return(true);				 
+}
+</script>
 <div align="center">
   <table width="1040" border="0">
     <tr>
@@ -36,20 +51,33 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php") ?></td>
-      <td width="638" rowspan="2" valign="top" align="center"><table width="330" border="0">
+      <td width="638" rowspan="2" valign="top" align="center"><table width="121" border="0">
         <tr>
-          <td width="95">&nbsp;</td>
-          <td width="225">&nbsp;</td>
-        </tr>
+          <td colspan="2">&nbsp;</td>
+          </tr>
         <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
+          <td width="48">教师：</td>
+          <td width="63" class = "di"><?php echo $stuorderteaname[T_Name];?></td>
         </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      </table></td>
+      </table>
+        <form id="orderform" name="orderform" method="post" action="stusaveorder.php" onSubmit="return chkuserinput(this)">
+          <table width="338" border="0">
+            <tr>
+              <td width="332" colspan="2">输入预约请求：</td>
+            </tr>
+            <tr>
+              <td height="21" colspan="2">
+                <label for="textarea"></label>
+                <textarea name="orderinfo" id="textarea" cols="45" rows="10"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td height="21"><input type="submit" name="button" id="button" value="确认预约" /></td>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+          <input type="hidden" value="<?php echo $stuorderteaname[T_Username];?>" name="uername">
+      </form></td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php") ?></td>
     </tr>
     <tr>
@@ -63,7 +91,7 @@ body {
       </table></td>
     </tr>
     <tr>
-      <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
+      <td  colspan="3"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

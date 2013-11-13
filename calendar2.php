@@ -82,30 +82,20 @@ class Calendar
     private function showChangeDate()
     {
         
-        $url = basename($_SERVER['REQUEST_URI']);
-        if(isset($_GET['year']) && isset($_GET['month'])){
-			if(stripos($url,"?year=")){
-				$url = substr($url,0,stripos($url,"year="));
-			}
-			else if(stripos($url,"&year="))
-				$url = substr($url,0,stripos($url,"year="));
-		}
-		else if(stripos($url,"?"))
-			$url = str_pad($url,strlen($url)+1,"&");
-		else
-			$url = str_pad($url,strlen($url)+1,"?");
+        $url = basename($_SERVER['PHP_SELF']);
+        
         echo '<tr>';
-	echo '<td><a href="'.$url.$this->preYearUrl($this->year,$this->month).'">'.'<<'.'</a></td>';
-	echo '<td><a href="'.$url.$this->preMonthUrl($this->year,$this->month).'">'.'<'.'</a></td>';
+	echo '<td><a href="?'.$this->preYearUrl($this->year,$this->month).'">'.'<<'.'</a></td>';
+	echo '<td><a href="?'.$this->preMonthUrl($this->year,$this->month).'">'.'<'.'</a></td>';
         echo '<td colspan="3"><form>';
         
-        echo '<select name="year" onchange="window.location=\''.$url.'year=\'+this.options[selectedIndex].value+\'&month='.$this->month.'\'">';
+        echo '<select name="year" onchange="window.location=\''.$url.'?year=\'+this.options[selectedIndex].value+\'&month='.$this->month.'\'">';
         for($ye=2000; $ye<=2038; $ye++) {
             $selected = ($ye == $this->year) ? 'selected' : '';
             echo '<option '.$selected.' value="'.$ye.'">'.$ye.'</option>';
         }
         echo '</select>';
-        echo '<select name="month" onchange="window.location=\''.$url.'year='.$this->year.'&month=\'+this.options[selectedIndex].value+\'\'">';
+        echo '<select name="month" onchange="window.location=\''.$url.'?year='.$this->year.'&month=\'+this.options[selectedIndex].value+\'\'">';
         
 
         
@@ -115,8 +105,8 @@ class Calendar
         }
         echo '</select>';        
         echo '</form></td>';        
-	echo '<td><a href="'.$url.$this->nextMonthUrl($this->year,$this->month).'">'.'>'.'</a></td>';
-	echo '<td><a href="'.$url.$this->nextYearUrl($this->year,$this->month).'">'.'>>'.'</a></td>';        
+	echo '<td><a href="?'.$this->nextMonthUrl($this->year,$this->month).'">'.'>'.'</a></td>';
+	echo '<td><a href="?'.$this->nextYearUrl($this->year,$this->month).'">'.'>>'.'</a></td>';        
         echo '</tr>';
     }
     

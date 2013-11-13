@@ -6,7 +6,6 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-$params['url']  = 'index.php';
 require_once 'calendar.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -46,7 +45,7 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu.php") ?></td>
-      <td width="626" rowspan="2"><form id="lostform" name="lostform" method="post" action="teasetnewpassword.php" onSubmit="return chkuserinput(this)">
+      <td width="626" rowspan="2"><form id="lostform" name="lostform" method="get" action="teasetnewpassword.php" onSubmit="return chkuserinput(this)">
   <div align="center">
     <table width="307" border="0">
       <tr>
@@ -89,7 +88,7 @@ body {
       </table></td>
     </tr>
     <tr>
-    <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
+    <td  colspan="3"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>

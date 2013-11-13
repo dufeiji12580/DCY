@@ -12,10 +12,10 @@ else
 	$rflag = 0;
 ?>
 <?php include("Connections/myconn.php");
-$username = trim($_GET[username]);
-$sql = "select * from teacher where T_Username = '".$username."'";
+$serchteaftid = trim($_GET[ftid]);
+$sql = "select * from teacher where FT_ID = '".$serchteaftid."'";
 $result = mysql_query($sql,$myconn); 
-$teainfo = mysql_fetch_array($result);
+$serchteauserinfo = mysql_fetch_array($result);
 ?>
 <?php
 $params = array();
@@ -25,7 +25,6 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-$params['url']  = 'index.php';
 require_once ('calendar.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -61,40 +60,40 @@ body {
           </tr>
           <tr >
             <td width="85">姓名：</td>
-            <td width="305" class = "di"><?php echo $teainfo[T_Name]; ?></td>
+            <td width="305" class = "di"><?php echo $serchteauserinfo[T_Name]; ?></td>
           </tr>
           <tr>
             <td >学院：</td>
-            <td class = "di"><?php echo $teainfo[T_Academy]; ?></td>
+            <td class = "di"><?php echo $serchteauserinfo[T_Academy]; ?></td>
           </tr>
           <tr>
             <td>专业：</td>
-            <td class = "di"><?php echo $teainfo[T_Major]; ?></td>
+            <td class = "di"><?php echo $serchteauserinfo[T_Major]; ?></td>
           </tr>
           <tr>
             <td>电话：</td>
-            <td class = "di"><?php echo $teainfo[T_Phone]; ?></td>
+            <td class = "di"><?php echo $serchteauserinfo[T_Phone]; ?></td>
           </tr>
           <tr>
             <td>Email：</td>
-            <td class = "di"><?php echo $teainfo[T_Email]; ?></td>
+            <td class = "di"><?php echo $serchteauserinfo[T_Email]; ?></td>
           </tr>
           <tr>
             <td>基本信息：</td>
-            <td class = "di"><?php echo $teainfo[T_Basic_Info]; ?></td>
+            <td class = "di"><?php echo $serchteauserinfo[T_Basic_Info]; ?></td>
           </tr>
           <tr>
             <td>研究方向：</td>
-            <td class = "di"><?php echo $teainfo[T_Research_Derection]; ?></td>
+            <td class = "di"><?php echo $serchteauserinfo[T_Research_Derection]; ?></td>
           </tr>
           <tr>
             <td>研究成果：</td>
-            <td class = "di"><?php echo $teainfo[T_Research_Achievement]; ?></td>
+            <td class = "di"><?php echo $serchteauserinfo[T_Research_Achievement]; ?></td>
           </tr>
       </table>
         <table width="400" border="0">
           <tr>
-            <td width="183" height="34" align="center"><input name="button" type="button"  class = "buttoncss" id="button" value="预约该教师" /></td>
+            <td width="183" height="34" align="center"> <a href="stuordertea.php?ftid=<?php echo $serchteaftid; ?>"><input name="button" type="button"  class = "buttoncss" id="button" value="预约该教师" /></a> </td>
             <td width="207" align="center"><input type="button" name="button2" id="button2"  class = "buttoncss" value="给他（她）留言" /></td>
           </tr>
       </table></td>
@@ -113,7 +112,7 @@ body {
       </table></td>
     </tr>
     <tr>
-      <td  colspan="3" height="100" valign="bottom"><?php include("bottom.php")?></td>
+      <td  colspan="3"><?php include("bottom.php")?></td>
     </tr>
   </table>
 </div>
