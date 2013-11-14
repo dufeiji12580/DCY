@@ -128,13 +128,13 @@ body {
 <div align="center">
   <table width="1040" border="0" >
     <tr>
-      <td colspan="3"><?php include("head.php") ?>
+      <td colspan="3"><?php include("head.php"); ?>
   <tr>
     <td colspan="3"></td>
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="200" valign="top"><?php include("left_menu.php") ?></td>
+      <td width="200" valign="top"><?php include("left_menu.php"); ?></td>
       <td width="626" rowspan="2" valign="top"><form id="regform" name="regform" method="POST" action="stusavereg.php" onSubmit="return chkinput(this)">
   <div align="center">
     <table width="458" border="0">
@@ -179,7 +179,7 @@ body {
       <tr>
         <td>学号：*</td>
         <td colspan="2"><label for="S_Number"></label>
-        <input type="text" name="S_Number" id="S_Number" /></td>
+        <input name="S_Number" type="text" id="S_Number" maxlength="10" /></td>
       </tr>
       <tr>
         <td>邮箱：*</td>
@@ -244,7 +244,7 @@ body {
       </table></td>
     </tr>
     <tr>
-      <td  colspan="3"><?php include("bottom.php")?></td>
+      <td  colspan="3"><?php include("bottom.php");?></td>
     </tr>
   </table>
 </div>

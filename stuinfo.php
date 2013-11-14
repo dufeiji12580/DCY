@@ -1,6 +1,6 @@
 <?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php session_start();
-if(!$_SESSION[S_Username]){
+if(!$_SESSION[T_Username]){
 	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
 }
 ?>
@@ -18,7 +18,7 @@ require_once 'calendar.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>学生主页</title>
+<title>学生信息</title>
 </head>
 <style type="text/css">
 body {
@@ -34,15 +34,12 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="200" rowspan="2" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638">你好</td>
-      <td width="188" rowspan="3" valign="top"><?php include("right_menu_stu.php"); ?></td>
+      <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
+      <td width="638" rowspan="3">&nbsp;</td>
+      <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>
     </tr>
     <tr>
-      <td rowspan="2">&nbsp;</td>
-    </tr>
-    <tr>
-      <td valign="top"><table width="200" border="0">
+      <td rowspan="2" valign="top"><table width="200" border="0">
         <tr>
           <td width="194"><?php
                 $cal = new Calendar($params);
@@ -50,6 +47,9 @@ body {
             ?></td>
           </tr>
       </table></td>
+    </tr>
+    <tr>
+      <td width="188"></td>
     </tr>
     <tr>
       <td  colspan="3"><?php include("bottom.php");?></td>

@@ -13,7 +13,7 @@ else
 ?>
 <?php include("Connections/myconn.php");
 $serchteaftid = trim($_GET[ftid]);
-$sql = "select * from teacher where FT_ID = '".$serchteaftid."'";
+$sql = "select * from teacher where FT_ID = ".$serchteaftid;
 $result = mysql_query($sql,$myconn); 
 $serchteauserinfo = mysql_fetch_array($result);
 ?>
@@ -31,7 +31,7 @@ require_once ('calendar.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>教师查询</title>
+<title>教师信息</title>
 </head>
 <style type="text/css">
 body {
@@ -47,13 +47,13 @@ body {
 <div align="center">
   <table width="1040" border="0" >
     <tr>
-      <td colspan="3"><?php include("head.php") ?>
+      <td colspan="3"><?php include("head.php"); ?>
   <tr>
     <td colspan="3"></td>
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="200" valign="top"><?php include($left) ?></td>
+      <td width="200" valign="top"><?php include($left); ?></td>
       <td width="638" rowspan="2" valign="top" align="center"><table width="400" border="0">
           <tr>
             <td colspan="2" align="center">教师信息</td>
@@ -112,7 +112,7 @@ body {
       </table></td>
     </tr>
     <tr>
-      <td  colspan="3"><?php include("bottom.php")?></td>
+      <td  colspan="3"><?php include("bottom.php");?></td>
     </tr>
   </table>
 </div>

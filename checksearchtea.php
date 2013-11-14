@@ -67,7 +67,7 @@ require_once ('calendar.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>教师查询</title>
+<title>教师查看</title>
 </head>
 <style type="text/css">
 body {
@@ -83,20 +83,20 @@ body {
 <div align="center">
   <table width="1040" border="0" >
     <tr>
-      <td colspan="3"><?php include("head.php") ?>
+      <td colspan="3"><?php include("head.php"); ?>
   <tr>
     <td colspan="3"></td>
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="201" valign="top"><?php include($left) ?></td>
+      <td width="201" valign="top"><?php include($left); ?></td>
       <td width="637" rowspan="2" valign="top"><div align="center">
         <table width="350" border="0" >
           <tr>
-            <td colspan="2" align="center">您要查询的教师：</td>
+            <td colspan="2" align="center">教师列表：</td>
             </tr>
             <tr>
-            <td colspan="2"><div align="right">共有<?php echo $totalRows_Recordset1 ?> 条记录</div></td>
+            <td colspan="2"><div align="right">共有<?php echo $totalRows_Recordset1; ?> 条记录</div></td>
             </tr>
             <tr>
               <td align="center" width="168">姓名</td>
@@ -137,11 +137,8 @@ body {
       </table></td>
     </tr>
     <tr>
-      <td  colspan="3"><?php include("bottom.php")?></td>
+      <td  colspan="3"><?php include("bottom.php");?></td>
     </tr>
   </table>
 </div>
 </html>
-<?php
-mysql_free_result($Recordset1);
-?>

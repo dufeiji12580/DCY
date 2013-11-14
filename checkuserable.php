@@ -52,6 +52,3 @@ body {
     <td height="50"><div align="center"><input type="button" value="确定" class="buttoncss" onClick="window.close()"></div></td>
   </tr>
 </table>
-<?php
-mysql_free_result($sql);
-?>

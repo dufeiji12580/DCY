@@ -12,13 +12,13 @@
   <tr>
     <td width="182" height="200"><table width="182" border="0">
       <tr>
-        <td class = "di" height="50"><p align="center"><a href="freetimematch.php">空闲时间匹配</a></p></td>
+        <td class = "di" height="50"><p align="center"><a href="teavieworder.php">查看预约</a></p></td>
       </tr>
       <tr>
-        <td class = "di" height="50"><p align="center"><a href="checksearchtea.php?username=">查看所有教师</p></td>
+        <td class = "di" height="50"><p align="center">空闲时间录入</p></td>
       </tr>
       <tr>
-        <td class = "di" height="50"><p align="center"><a href="stupreorder.php">预约教师</a></p></td>
+        <td class = "di" height="50"><p align="center"><a href="stupreorder.php">查看学生信息</a></p></td>
       </tr>
       <tr>
         <td class = "di" height="50"><p align="center">查看留言</p></td>

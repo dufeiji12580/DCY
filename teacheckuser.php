@@ -49,6 +49,3 @@ class chkinput{
     $obj=new chkinput(trim($username),trim($userpwd));
     $obj->checkinput();
 ?>
-<?php
-mysql_free_result($sql);
-?>

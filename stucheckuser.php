@@ -42,14 +42,10 @@ class chkinput{
              echo "<script language='javascript'>alert('密码错误！');history.back();</script>";
              exit;
            }
-
       }    
    }
  }
 
     $obj=new chkinput(trim($username),trim($userpwd));
     $obj->checkinput();
-?>
-<?php
-mysql_free_result($sql);
 ?>

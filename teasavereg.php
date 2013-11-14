@@ -32,6 +32,3 @@ if($info==true)
     echo "<script>alert('恭喜，注册成功!');window.location='tealogin.php';</script>";
  }
 ?>
-<?php
-mysql_free_result($sql);
-?>

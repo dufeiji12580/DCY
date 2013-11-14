@@ -30,13 +30,13 @@ body {
 <div align="center">
   <table width="1040" border="0" >
     <tr>
-      <td colspan="2"><?php include("head.php") ?>
+      <td colspan="2"><?php include("head.php"); ?>
   <tr>
     <td colspan="2"></td>
     <tr>
     <td colspan="2"></tr>
     <tr>
-      <td width="200" valign="top"><?php include($left) ?></td>
+      <td width="200" valign="top"><?php include($left); ?></td>
       <td width="830">&nbsp;</td>
     </tr>
     <tr>
@@ -51,7 +51,7 @@ body {
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td  colspan="2"><?php include("bottom.php")?></td>
+      <td  colspan="2"><?php include("bottom.php");?></td>
     </tr>
   </table>
 </div>

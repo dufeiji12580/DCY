@@ -33,6 +33,3 @@ if($info==true)
     echo "<script>alert('恭喜，注册成功!');window.location='stulogin.php';</script>";
  }
 ?>
-<?php
-mysql_free_result($sql);
-?>
