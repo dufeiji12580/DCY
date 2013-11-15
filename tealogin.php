@@ -107,7 +107,7 @@ function chkuserinput(form){
       <td width="200" rowspan="2">&nbsp;</td>
     </tr>
     <tr>
-      <td><table width="200" border="0">
+      <td valign="top"><table width="200" border="0">
         <tr>
           <td width="194" valign="top"> <?php
                 $cal = new Calendar($params);

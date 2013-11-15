@@ -14,7 +14,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FA_ID,FS_ID,S_Username,S_Name,S_Major,T_Username,State FROM student natural join apply_form";
+$query_Recordset1 = "SELECT FA_ID,FS_ID,S_Username,S_Name,S_Major,T_Username,State FROM student natural join apply_form where T_Username = '".$_SESSION[T_Username]."' order by State desc";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -74,13 +74,13 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="3" valign="top"><div align="center">
+      <td width="638" rowspan="2" valign="top"><div align="center">
         <table width="471" border="0" >
           <tr>
             <td colspan="4" align="center">预约信息列表：</td>
             </tr>
             <tr>
-            <td colspan="4"><div align="right">共有<?php echo $totalRows_Recordset1; ?> 条记录</div></td>
+            <td colspan="4"><div align="right">共有<?php echo $totalRows_Recordset1; ?>条记录</div></td>
             </tr>
             <tr>
               <td align="center" width="113">学生姓名</td>
@@ -104,7 +104,7 @@ body {
 			?>
 			<?php echo $state; ?>
 			</td>
-            <td align="center" width="56"><a href="orderdetail.php?faid=<?php echo $row_Recordset1['FA_ID']; ?>">详细</a></td>
+            <td align="center" width="56"><?php if($totalRows_Recordset1!=0){?><a href="orderdetail.php?faid=<?php echo $row_Recordset1['FA_ID']; ?>">详细</a><?php } ?></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
         </table>
@@ -124,7 +124,7 @@ body {
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>
     </tr>
     <tr>
-      <td rowspan="2" valign="top"><table width="200" border="0">
+      <td valign="top"><table width="200" border="0">
         <tr>
           <td width="194"><?php
                 $cal = new Calendar($params);
@@ -132,9 +132,6 @@ body {
             ?></td>
           </tr>
       </table></td>
-    </tr>
-    <tr>
-      <td width="188"></td>
     </tr>
     <tr>
       <td  colspan="3"><?php include("bottom.php");?></td>

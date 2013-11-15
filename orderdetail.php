@@ -47,7 +47,7 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="3" valign="top" align="center"><table width="362" border="0">
+      <td width="638" rowspan="2" valign="top" align="center"><table width="420" border="0">
         <tr>
           <td colspan="3" align="center">预约详情：</td>
           </tr>
@@ -55,7 +55,7 @@ body {
           <td colspan="3" align="center">&nbsp;</td>
         </tr>
         <tr>
-          <td width="92">学生：</td>
+          <td width="91">学生：</td>
           <td colspan="2" class="di"><a href="stuinfo.php?fsid=<?php echo $orderdetailinfo[FS_ID]; ?>"><?php echo $orderdetailinfo[S_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
           </tr>
         <tr>
@@ -75,14 +75,14 @@ body {
           </tr>
         <tr>
           <td>&nbsp;</td>
-          <td width="129"><a href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=agree">同意请求</a></td>
-          <td width="129"><a href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=disagree">拒绝请求</a></td>
+          <td width="147"><a href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=agree">同意请求</a></td>
+          <td width="168"><a href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=disagree">拒绝请求</a></td>
         </tr>
       </table></td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>
     </tr>
     <tr>
-      <td rowspan="2" valign="top"><table width="200" border="0">
+      <td valign="top"><table width="200" border="0">
         <tr>
           <td width="194"><?php
                 $cal = new Calendar($params);
@@ -90,9 +90,6 @@ body {
             ?></td>
           </tr>
       </table></td>
-    </tr>
-    <tr>
-      <td width="188"></td>
     </tr>
     <tr>
       <td  colspan="3"><?php include("bottom.php");?></td>

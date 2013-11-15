@@ -34,12 +34,9 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="200" rowspan="2" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638">你好</td>
-      <td width="188" rowspan="3" valign="top"><?php include("right_menu_stu.php"); ?></td>
-    </tr>
-    <tr>
-      <td rowspan="2">&nbsp;</td>
+      <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
+      <td width="638" rowspan="2" valign="top">你好</td>
+      <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php"); ?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">

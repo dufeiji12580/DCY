@@ -1,19 +1,11 @@
-<?php require_once('Connections/myconn.php'); 
-header("Content-Type:text/html; charset=utf-8");?>
+<?php header("Content-Type:text/html; charset=utf-8"); ?>
+<?php require_once('Connections/myconn.php'); ?>
 <?php session_start();
-if(!$_SESSION[S_Username] && !$_SESSION[T_Username]){
-	 $left = "left_menu.php";
-}
-else{
-	$left = "left_menu_back.php";
-if($_SESSION[S_Username])
-	$rflag = 1;
-else
-	$rflag = 0;
+if(!$_SESSION[T_Username]){
+	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
 }
 ?>
 <?php
-$searchname = $_GET[search];
 $currentPage = $_SERVER["PHP_SELF"];
 
 $maxRows_Recordset1 = 10;
@@ -22,7 +14,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FT_ID, T_Username, T_Name, T_Major FROM teacher where T_Name like '%".$searchname."%'";
+$query_Recordset1 = "SELECT FS_ID,FST_ID,S_Username,S_Name,T_Username,Stot_Topic FROM student natural join stotmessage where T_Username = '".$_SESSION[T_Username]."' order by FST_ID desc";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -51,8 +43,6 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 $queryString_Recordset1 = sprintf("&totalRows_Recordset1=%d%s", $totalRows_Recordset1, $queryString_Recordset1);
 ?>
-
-
 <?php
 $params = array();
 if (isset($_GET['year']) && isset($_GET['month'])) {
@@ -61,27 +51,21 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-require_once ('calendar.php');
+require_once 'calendar.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>教师查看</title>
+<title>查看留言</title>
 </head>
 <style type="text/css">
 body {
 	background-color: #CCCCCC;
 }
 </style>
-<style type="text/css">
-
-.di {
-	background-color: #09F;
-}
-</style>
 <div align="center">
-  <table width="1040" border="0" >
+  <table width="1040" border="0">
     <tr>
       <td colspan="3"><?php include("head.php"); ?>
   <tr>
@@ -89,23 +73,25 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="201" valign="top"><?php include($left); ?></td>
-      <td width="637" rowspan="2" valign="top"><div align="center">
-        <table width="350" border="0" >
+      <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
+      <td width="638" rowspan="2" valign="top"><div align="center">
+        <table width="471" border="0" >
           <tr>
-            <td colspan="2" align="center">教师列表：</td>
+            <td colspan="3" align="center">留言列表：</td>
             </tr>
             <tr>
-            <td colspan="2"><div align="right">共有<?php echo $totalRows_Recordset1; ?>条记录</div></td>
+            <td colspan="3"><div align="right">共有<?php echo $totalRows_Recordset1; ?>条记录</div></td>
             </tr>
             <tr>
-              <td align="center" width="168">姓名</td>
-              <td align="center" width="172">专业</td>
+              <td align="center" width="143">姓名</td>
+              <td align="center" width="244">主题</td>
+              <td align="center" width="70">&nbsp;</td>
             </tr>
             <?php do { ?>
             <tr>
-            <td height = "30" class = "di" align="center" width="168"><a href="teainfo.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
-            <td class = "di" align="center" width="172"><?php echo $row_Recordset1['T_Major']; ?></td>
+            <td height = "30" class = "di" align="center" width="143"><a href="stuinfo.php?fsid=<?php echo $row_Recordset1['FS_ID']; ?>"><?php echo $row_Recordset1['S_Name']; ?></a></td>
+            <td class = "di" align="center" width="244"><?php echo $row_Recordset1['Stot_Topic']; ?></td>
+            <td align="center" width="70"><?php if($totalRows_Recordset1!=0){?><a href="teamessagedetail.php?fstid=<?php echo $row_Recordset1['FST_ID']; ?>">详细</a><?php } ?></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
         </table>
@@ -122,14 +108,12 @@ body {
           </tr>
         </table>
       </div></td>
-      <td width="188" rowspan="2" valign="top"><?php 
-	  if($rflag == 1)
-	  	include("right_menu_stu.php"); ?></td>
+      <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">
         <tr>
-          <td width="194"> <?php
+          <td width="194"><?php
                 $cal = new Calendar($params);
                 $cal->display();
             ?></td>
@@ -141,4 +125,5 @@ body {
     </tr>
   </table>
 </div>
+
 </html>

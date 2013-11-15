@@ -21,7 +21,7 @@
         <td class = "di" height="50"><p align="center"><a href="stupreorder.php">查看学生信息</a></p></td>
       </tr>
       <tr>
-        <td class = "di" height="50"><p align="center">查看留言</p></td>
+        <td class = "di" height="50"><p align="center"><a href="teaviewmessage.php">查看留言</a></p></td>
       </tr>
 	  <tr>
         <td class = "di" height="50"><p align="center">查看预约情况</p></td>

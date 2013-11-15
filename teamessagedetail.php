@@ -5,11 +5,10 @@ if(!$_SESSION[T_Username]){
 }
 ?>
 <?php include("Connections/myconn.php");
-$father = $_SERVER['HTTP_REFERER'];
-$fsid = $_GET[fsid];
-$sql = "select * from student where FS_ID = ".$fsid;
-$result = mysql_query($sql,$myconn);
-$stuinfo = mysql_fetch_array($result);
+$teamessagedetailfstid = trim($_GET[fstid]);
+$sql = "select FS_ID,S_Name,S_Major,Stot_Topic,Stot_Info,Stot_Time from stotmessage natural join student where FST_ID = ".$teamessagedetailfstid;
+$result = mysql_query($sql,$myconn); 
+$teamessagedetailinfo = mysql_fetch_array($result);
 ?>
 <?php
 $params = array();
@@ -25,7 +24,7 @@ require_once 'calendar.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>学生信息</title>
+<title>预约详情</title>
 </head>
 <style type="text/css">
 body {
@@ -48,53 +47,54 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="2" valign="top" align="center"><table width="310" border="0">
+      <td width="638" rowspan="2" valign="top" align="center"><table width="433" border="0">
         <tr>
-          <td colspan="3" align="center">学生信息：</td>
+          <td colspan="3" align="center">留言详情：</td>
           </tr>
         <tr>
-          <td width="50">&nbsp;</td>
-          <td colspan="2">&nbsp;</td>
+          <td colspan="3" align="center">&nbsp;</td>
         </tr>
         <tr>
-          <td>姓名：</td>
-          <td colspan="2" class="di"><?php echo $stuinfo[S_Name]; ?></td>
-        </tr>
-        <tr>
-          <td>学院：</td>
-          <td colspan="2" class="di"><?php echo $stuinfo[S_Academy]; ?></td>
-        </tr>
+          <td width="53">学生：</td>
+          <td colspan="2" class="di"><a href="stuinfo.php?fsid=<?php echo $teamessagedetailinfo[FS_ID]; ?>"><?php echo $teamessagedetailinfo[S_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
+          </tr>
         <tr>
           <td>专业：</td>
-          <td colspan="2" class="di"><?php echo $stuinfo[S_Major]; ?></td>
+          <td colspan="2" class="di"><?php echo $teamessagedetailinfo[S_Major];?></td>
+          </tr>
+        <tr>
+          <td>时间：</td>
+          <td colspan="2" class="di"><?php echo $teamessagedetailinfo[Stot_Time];?></td>
         </tr>
         <tr>
-          <td>邮箱：</td>
-          <td colspan="2" class="di"><?php echo $stuinfo[S_Email]; ?></td>
+          <td valign="top">主题：</td>
+          <td colspan="2" valign="top" class="di"><?php echo $teamessagedetailinfo[Stot_Topic];?></td>
         </tr>
         <tr>
-          <td>电话：</td>
-          <td colspan="2" class="di"><?php echo $stuinfo[S_Phone]; ?></td>
+          <td valign="top">内容：</td>
+          <td colspan="2" valign="top" class="di"><?php echo $teamessagedetailinfo[Stot_Info];?></td>
+          </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
-          <td colspan="2">&nbsp;</td>
-        </tr>
-        <tr>
-          <td colspan="2" align="center"><a href="tealeavemessage.php?fsid=<?php echo $fsid;?>">给他(她)留言</a></td>
-          <td width="125" align="center"><a href="<?php echo $father;?>">返回</a></td>
+          <td width="166" align="center"><a href="tealeavemessage.php?fsid=<?php echo $teamessagedetailinfo[FS_ID];?>">回复留言</a></td>
+          <td width="200" align="center"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
         </tr>
       </table></td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>
     </tr>
+    <tr>
+      <td valign="top"><table width="200" border="0">
         <tr>
-          <td width="194"><table width="200" border="0">
-        <tr>
-		  <td width="194"><?php
+          <td width="194"><?php
                 $cal = new Calendar($params);
                 $cal->display();
             ?></td>
-            </tr>
+          </tr>
       </table></td>
     </tr>
     <tr>
