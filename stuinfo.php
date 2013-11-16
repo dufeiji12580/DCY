@@ -10,6 +10,10 @@ $fsid = $_GET[fsid];
 $sql = "select * from student where FS_ID = ".$fsid;
 $result = mysql_query($sql,$myconn);
 $stuinfo = mysql_fetch_array($result);
+if($stuinfo[S_Sex] == "女")
+	$ta = "她";
+else
+	$ta = "他";
 ?>
 <?php
 $params = array();
@@ -48,12 +52,12 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="2" valign="top" align="center"><table width="310" border="0">
+      <td width="638" rowspan="2" valign="top" align="center"><table width="370" border="0">
         <tr>
           <td colspan="3" align="center">学生信息：</td>
           </tr>
         <tr>
-          <td width="50">&nbsp;</td>
+          <td width="63">&nbsp;</td>
           <td colspan="2">&nbsp;</td>
         </tr>
         <tr>
@@ -69,6 +73,14 @@ body {
           <td colspan="2" class="di"><?php echo $stuinfo[S_Major]; ?></td>
         </tr>
         <tr>
+          <td>班级：</td>
+          <td colspan="2" class="di"><?php echo $stuinfo[S_Class]; ?></td>
+        </tr>
+        <tr>
+          <td>学号：</td>
+          <td colspan="2" class="di"><?php echo $stuinfo[S_Number]; ?></td>
+        </tr>
+        <tr>
           <td>邮箱：</td>
           <td colspan="2" class="di"><?php echo $stuinfo[S_Email]; ?></td>
         </tr>
@@ -81,8 +93,8 @@ body {
           <td colspan="2">&nbsp;</td>
         </tr>
         <tr>
-          <td colspan="2" align="center"><a href="tealeavemessage.php?fsid=<?php echo $fsid;?>">给他(她)留言</a></td>
-          <td width="125" align="center"><a href="<?php echo $father;?>">返回</a></td>
+          <td colspan="2" align="center"><a href="tealeavemessage.php?fsid=<?php echo $fsid;?>">给<?php echo $ta;?>留言</a></td>
+          <td width="185" align="center"><a href="<?php echo $father;?>">返回</a></td>
         </tr>
       </table></td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>

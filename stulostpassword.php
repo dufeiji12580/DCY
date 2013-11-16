@@ -1,3 +1,4 @@
+<?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php
 $params = array();
 if (isset($_GET['year']) && isset($_GET['month'])) {

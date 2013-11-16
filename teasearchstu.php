@@ -1,6 +1,6 @@
 <?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php session_start();
-if(!$_SESSION[S_Username]){
+if(!$_SESSION[T_Username]){
 	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
 }
 ?>
@@ -18,13 +18,20 @@ require_once 'calendar.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>教师预约</title>
+<title>查找学生</title>
 </head>
 <style type="text/css">
 body {
 	background-color: #CCCCCC;
 }
 </style>
+<style type="text/css">
+
+.di {
+	background-color: #09F;
+}
+</style>
+<div align="center">
 <script language="javascript">
 function chkuserinput(form){
 	if(form.search.value==""){
@@ -35,7 +42,6 @@ function chkuserinput(form){
 	return(true);			 
 }
 </script>
-<div align="center">
   <table width="1040" border="0">
     <tr>
       <td colspan="3"><?php include("head.php"); ?>
@@ -45,20 +51,21 @@ function chkuserinput(form){
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="2" align="center"><form id="form2" name="form2" method="get" action="checksearchtea.php" onSubmit="return chkuserinput(this)">
-        <table width="286" border="0">
+      <td width="638" rowspan="2" align="center"><form id="form2" name="form2" method="get" action="teaviewstu.php" onSubmit="return chkuserinput(this)">
+        <table width="336" border="0">
           <tr>
-            <td>输入教师姓名：</td>
-            <td><label for="textfield2"></label>
-              <input name="search" type="text" id="textfield2" size="20" /></td>
+            <td colspan="2">请输入学生姓名:</td>
+            <td colspan="2"><label for="textfield2"></label>
+              <input type="text" name="search" id="textfield2" /></td>
           </tr>
           <tr>
-            <td>&nbsp;</td>
-            <td><input type="submit" name="submit" id="button" value="确认" /></td>
+            <td width="67">&nbsp;</td>
+            <td colspan="2"><input type="submit" name="button" id="button" value="确认" /></td>
+            <td width="159"><a href="teaviewstu.php">点击查询所有学生</a></td>
           </tr>
         </table>
       </form></td>
-      <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php"); ?></td>
+      <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">

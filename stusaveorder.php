@@ -16,6 +16,6 @@ if(strtotime($time)<strtotime($nowtime)){
 }
 $orderinfo = $_POST[orderinfo];
 $orderinfo = nl2br($orderinfo);
-$stusaveorder = mysql_query("insert into apply_form(S_Username,T_Username,Apply_Time,order_Info,State) values('$susername','$tusername','$time','$orderinfo','w')",$myconn);
+$stusaveorder = mysql_query("insert into apply_form(S_Username,T_Username,Apply_Time,Order_Time,Order_Info,State) values('$susername','$tusername','$nowtime','$time','$orderinfo','w')",$myconn);
 echo "<script>alert('恭喜，预约成功!');window.location='stuindex.php';</script>";
 ?>

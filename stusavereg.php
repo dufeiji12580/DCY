@@ -7,6 +7,7 @@ $S_Email = trim($_POST[S_Email]);
 $S_Name = trim($_POST[S_Name]);
 $S_Phone = trim($_POST[S_Phone]);
 $S_Number = trim($_POST[S_Number]);
+$S_Class = trim($_POST[S_Class]);
 $S_Academy = trim($_POST[S_Academy]);
 $S_Major = trim($_POST[S_Major]);
 $S_Answer = trim($_POST[S_Answer]);
@@ -27,9 +28,14 @@ if($info==true)
    echo "<script>alert('该用户名已经存在!');history.back();</script>";
    exit;
  }
+ else if($info[number] == $S_Number)
+ {
+	 echo "<script>alert('该学号已经注册!如果忘记密码，请在登录界面找回密码。');history.back();</script>";
+   exit;
+ }
  else
  {  
-    mysql_query("insert into student (S_Username,S_Password,S_Name,S_Phone,S_Sex,S_Number,S_Email,S_Academy,S_Major,S_Question,S_Answer) values ('$S_Username','$S_Password','$S_Name','$S_Phone','$S_Sex','$S_Number','$S_Email','$S_Academy','$S_Major','$S_Question','$S_Answer')",$myconn);
+    mysql_query("insert into student (S_Username,S_Password,S_Name,S_Phone,S_Sex,S_Class,S_Number,S_Email,S_Academy,S_Major,S_Question,S_Answer) values ('$S_Username','$S_Password','$S_Name','$S_Phone','$S_Sex','$S_Class','$S_Number','$S_Email','$S_Academy','$S_Major','$S_Question','$S_Answer')",$myconn);
     echo "<script>alert('恭喜，注册成功!');window.location='stulogin.php';</script>";
  }
 ?>

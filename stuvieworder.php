@@ -1,8 +1,8 @@
 <?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php require_once('Connections/myconn.php'); ?>
 <?php session_start();
-if(!$_SESSION[T_Username]){
-	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
+if(!$_SESSION[S_Username]){
+	  echo "<script language='javascript'>alert('请先以学生登录！');window.location='index.php'</script>";
 }
 ?>
 <?php
@@ -14,7 +14,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FA_ID,FS_ID,S_Username,S_Name,Apply_Time,T_Username,State FROM student natural join apply_form where T_Username = '".$_SESSION[T_Username]."' order by State desc,Apply_Time desc";
+$query_Recordset1 = "SELECT FA_ID,FT_ID,T_Username,T_Name,Apply_Time,S_Username,State FROM teacher natural join apply_form where S_Username = '".$_SESSION[S_Username]."' order by State desc,Apply_Time desc";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -57,7 +57,7 @@ require_once 'calendar.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>查询预约</title>
+<title>查看</title>
 </head>
 <style type="text/css">
 body {
@@ -80,26 +80,25 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="2" valign="top"><div align="center">
-        <table width="471" border="0" >
+      <td width="638" rowspan="2" valign="top" align="center"><table width="471" border="0" >
           <tr>
-            <td colspan="4" align="center">预约信息列表：</td>
+            <td colspan="4" align="center">预约列表：</td>
             </tr>
             <tr>
             <td colspan="4"><div align="right">共有<?php echo $totalRows_Recordset1; ?>条记录</div></td>
             </tr>
             <tr>
-              <td align="center" width="113">学生姓名</td>
-              <td align="center" width="174">预约请求时间</td>
-              <td align="center" width="110">状态</td>
-              <td align="center" width="56">&nbsp;</td>
+              <td align="center" width="143">教师姓名</td>
+              <td align="center" width="176">预约请求时间</td>
+              <td align="center" width="92">状态</td>
+              <td align="center" width="42">&nbsp;</td>
             </tr>
             <?php do { ?>
             <tr>
-            <td height = "30" class = "di" align="center" width="113"><a href="stuinfo.php?fsid=<?php echo $row_Recordset1['FS_ID']; ?>"><?php echo $row_Recordset1['S_Name']; ?></a></td>
-            <td class = "di" align="center" width="174"><?php echo $row_Recordset1['Apply_Time']; ?></td>
-            <td class = "di" align="center" width="110">
-			<?php if($row_Recordset1['State'] == "w")
+            <td height = "30" class = "di" align="center" width="143"><a href="teainfo.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
+            <td class = "di" align="center" width="176"><?php echo $row_Recordset1['Apply_Time']; ?></td>
+            <td class = "di" align="center" width="92">
+            <?php if($row_Recordset1['State'] == "w")
 					$state = "等待处理";
 			else if($row_Recordset1['State'] == "p")
 					$state = "时间已过";
@@ -109,8 +108,10 @@ body {
 					$state = "拒绝请求";
 			?>
 			<?php echo $state; ?>
-			</td>
-            <td align="center" width="56"><?php if($totalRows_Recordset1!=0){?><a href="teaorderdetail.php?faid=<?php echo $row_Recordset1['FA_ID']; ?>">详细</a><?php } ?></td>
+            </td>
+            <td align="center" width="42"><?php if($totalRows_Recordset1!=0){?>
+              <a href="stuorderdetail.php?faid=<?php echo $row_Recordset1['FA_ID']; ?>">详细</a>
+              <?php } ?></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
         </table>
@@ -125,9 +126,8 @@ body {
             <td width="137"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
               <?php } // Show if not last page ?></td>
           </tr>
-        </table>
-      </div></td>
-      <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>
+      </table></td>
+      <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php"); ?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">

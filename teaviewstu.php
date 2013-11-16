@@ -1,19 +1,15 @@
 <?php require_once('Connections/myconn.php'); 
 header("Content-Type:text/html; charset=utf-8");?>
 <?php session_start();
-if(!$_SESSION[S_Username] && !$_SESSION[T_Username]){
-	 $left = "left_menu.php";
-}
-else{
-	$left = "left_menu_back.php";
-if($_SESSION[S_Username])
-	$rflag = 1;
-else
-	$rflag = 0;
+if(!$_SESSION[T_Username]){
+	  echo "<script language='javascript'>alert('请先以教师登录！');window.location='index.php'</script>";
 }
 ?>
 <?php
-$searchname = $_GET[search];
+if(!isset($_GET[search]))
+	$searchname = "";
+else
+	$searchname = $_GET[search];
 $currentPage = $_SERVER["PHP_SELF"];
 
 $maxRows_Recordset1 = 10;
@@ -22,7 +18,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FT_ID, T_Username, T_Name, T_Academy FROM teacher where T_Name like '%".$searchname."%'";
+$query_Recordset1 = "SELECT FS_ID, S_Username, S_Name, S_Major FROM student where S_Name like '%".$searchname."%'";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -67,7 +63,7 @@ require_once ('calendar.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>教师查看</title>
+<title>学生查看</title>
 </head>
 <style type="text/css">
 body {
@@ -89,23 +85,23 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="201" valign="top"><?php include($left); ?></td>
+      <td width="201" valign="top"><?php include("left_menu_back.php"); ?></td>
       <td width="637" rowspan="2" valign="top"><div align="center">
         <table width="350" border="0" >
           <tr>
-            <td colspan="2" align="center">教师列表：</td>
+            <td colspan="2" align="center">学生列表：</td>
             </tr>
             <tr>
             <td colspan="2"><div align="right">共有<?php echo $totalRows_Recordset1; ?>条记录</div></td>
             </tr>
             <tr>
               <td align="center" width="168">姓名</td>
-              <td align="center" width="172">学院</td>
+              <td align="center" width="172">专业</td>
             </tr>
             <?php do { ?>
             <tr>
-            <td height = "30" class = "di" align="center" width="168"><a href="teainfo.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
-            <td class = "di" align="center" width="172"><?php echo $row_Recordset1['T_Academy']; ?></td>
+            <td height = "30" class = "di" align="center" width="168"><a href="stuinfo.php?fsid=<?php echo $row_Recordset1['FS_ID']; ?>"><?php echo $row_Recordset1['S_Name']; ?></a></td>
+            <td class = "di" align="center" width="172"><?php echo $row_Recordset1['S_Major']; ?></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
         </table>
@@ -123,8 +119,7 @@ body {
         </table>
       </div></td>
       <td width="188" rowspan="2" valign="top"><?php 
-	  if($rflag == 1)
-	  	include("right_menu_stu.php"); ?></td>
+	  	include("right_menu_tea.php");?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">

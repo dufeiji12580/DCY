@@ -7,7 +7,6 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-$params['url']  = 'index.php';
 require_once 'calendar.php';
 ?>
 <style type="text/css">
@@ -66,7 +65,12 @@ body {
 	 form.S_Name.select();
 	 return(false);
 	 }
-	 
+	 if(form.S_Class.value=="")
+	 {
+	 alert("请输入班级!");
+	 form.S_Class.select();
+	 return(false);
+	 }
 	 if(form.S_Number.value=="")
 	 {
 	 alert("请输入学号!");
@@ -175,6 +179,11 @@ body {
           女 
           
         </label></td>
+      </tr>
+      <tr>
+        <td>班级：*</td>
+        <td colspan="2"><label for="textfield2"></label>
+          <input name="S_Class" type="text" id="textfield2" maxlength="7" /></td>
       </tr>
       <tr>
         <td>学号：*</td>

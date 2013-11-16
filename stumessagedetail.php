@@ -1,19 +1,12 @@
 <?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php session_start();
-if(!$_SESSION[S_Username] && !$_SESSION[T_Username]){
-	 $left = "left_menu.php";
+if(!$_SESSION[S_Username]){
+	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
 }
-else{
-	$left = "left_menu_back.php";
-}
-if($_SESSION[S_Username])
-	$rflag = 1;
-else
-	$rflag = 0;
 ?>
 <?php include("Connections/myconn.php");
 $stumessagedetailfttid = trim($_GET[fttid]);
-$sql = "select FT_ID,T_Name,T_Major,Ttos_Topic,Ttos_Info,Ttos_Time from ttosmessage natural join teacher where FTT_ID = ".$stumessagedetailfttid;
+$sql = "select FT_ID,T_Name,T_Academy,Ttos_Topic,Ttos_Info,Ttos_Time from ttosmessage natural join teacher where FTT_ID = ".$stumessagedetailfttid;
 $result = mysql_query($sql,$myconn); 
 $stumessagedetailinfo = mysql_fetch_array($result);
 ?>
@@ -53,7 +46,7 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="200" valign="top"><?php include($left); ?></td>
+      <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
       <td width="638" rowspan="2" valign="top" align="center"><table width="433" border="0">
         <tr>
           <td colspan="3" align="center">留言详情：</td>
@@ -66,8 +59,8 @@ body {
           <td colspan="2" class="di"><a href="teainfo.php?ftid=<?php echo $stumessagedetailinfo[FT_ID]; ?>"><?php echo $stumessagedetailinfo[T_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
         </tr>
         <tr>
-          <td>专业：</td>
-          <td colspan="2" class="di"><?php echo $stumessagedetailinfo[T_Major];?></td>
+          <td>学院：</td>
+          <td colspan="2" class="di"><?php echo $stumessagedetailinfo[T_Academy];?></td>
         </tr>
         <tr>
           <td>时间：</td>
@@ -92,8 +85,7 @@ body {
           <td width="200" align="center"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
         </tr>
       </table></td>
-      <td width="188" rowspan="2" valign="top"><?php 
-	  if($rflag == 1)
+      <td width="188" rowspan="2" valign="top"><?php
 	  	include("right_menu_stu.php"); ?></td>
     </tr>
     <tr>

@@ -18,7 +18,7 @@
         <td class = "di" height="50"><p align="center"><a href="tealogin.php">教师登录</a></p></td>
       </tr>
       <tr>
-        <td class = "di" height="50"><div align="center">管理员登录</div></td>
+        <td class = "di" height="50"><div align="center"><a href="adminlogin.php">管理员登录</a></div></td>
       </tr>
   </table></td>
   </tr>

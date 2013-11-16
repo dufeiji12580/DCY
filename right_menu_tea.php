@@ -15,16 +15,16 @@
         <td class = "di" height="50"><p align="center"><a href="teavieworder.php">查看预约</a></p></td>
       </tr>
       <tr>
-        <td class = "di" height="50"><p align="center">空闲时间录入</p></td>
+        <td class = "di" height="50"><p align="center"><a href="teafreetimein.php">空闲时间录入</a></p></td>
       </tr>
       <tr>
-        <td class = "di" height="50"><p align="center"><a href="stupreorder.php">查看学生信息</a></p></td>
+        <td class = "di" height="50"><p align="center"><a href="teasearchstu.php">查看学生信息</a></p></td>
       </tr>
       <tr>
         <td class = "di" height="50"><p align="center"><a href="teaviewmessage.php">查看留言</a></p></td>
       </tr>
 	  <tr>
-        <td class = "di" height="50"><p align="center">查看预约情况</p></td>
+        <td class = "di" height="50"><p align="center"><a href="stuvieworder.php">查看已发送留言</a></p></td>
       </tr>
   </table></td>
   </tr>

@@ -41,6 +41,12 @@ body {
 	background-color: #CCCCCC;
 }
 </style>
+<style type="text/css">
+
+.di {
+	background-color: #09F;
+}
+</style>
 <script language="javascript">
 function chkuserinput(form){
 	if(form.topic.value==""){
@@ -97,7 +103,7 @@ function chkuserinput(form){
             </tr>
             <tr>
               <td width="171" height="21"><input type="submit" name="button" id="button" value="确认" /></td>
-              <td width="175"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>"><input type="button" name="button2" id="button2" value="返回" /></a></td>
+              <td width="175"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
             </tr>
           </table>
       </form></td>
