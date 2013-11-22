@@ -97,9 +97,10 @@ body {
       </table>
         <table width="400" border="0">
           <tr>
-            <td width="89" height="34" align="center"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
-            <td width="140" align="center"><a href="stuordertea.php?ftid=<?php echo $serchteaftid; ?>">预约该教师</a></td>
-            <td width="157" align="center"><a href="stuleavemessage.php?ftid=<?php echo $serchteaftid; ?>">给<?php echo $ta;?>留言</a></td>
+            <td width="65" height="34" align="center"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
+            <td width="90" align="center"><a href="stuordertea.php?ftid=<?php echo $serchteaftid; ?>">预约该教师</a></td>
+            <td width="139" align="center"><a href="stusearchteafreetime.php?ftid=<?php echo $serchteaftid; ?>">查看空闲时间</a></td>
+            <td width="88" align="center"><a href="stuleavemessage.php?ftid=<?php echo $serchteaftid; ?>">给<?php echo $ta;?>留言</a></td>
           </tr>
       </table></td>
       <td width="188" rowspan="2" valign="top"><?php 
