@@ -135,20 +135,20 @@ body {
         <td width="95">用户名：*</td>
         <td colspan="2"><p>
           <label for="T_Username"></label>
-          <input type="text" name="T_Username"  id="T_Username" />
+          <input name="T_Username" type="text"  id="T_Username" maxlength="20" />
           <input type="button" name="button3" id="button3" onClick="chknc('teacher',regform.T_Username.value)" value="检查是否可用" />
         </p></td>
       </tr>
       <tr>
         <td>密码：*</td>
         <td colspan="2"><label for="T_Password"></label>
-          <input type="password" name="T_Password" id="T_Password" />
+          <input name="T_Password" type="password" id="T_Password" maxlength="20" />
         密码6至20位</td>
       </tr>
       <tr>
         <td>确认密码：*</td>
         <td colspan="2"><label for="T_Password1"></label>
-          <input type="password" name="T_Password1" id="T_Password1" />
+          <input name="T_Password1" type="password" id="T_Password1" maxlength="20" />
         再次输入密码！</td>
       </tr>
       <tr>
@@ -190,13 +190,11 @@ body {
         <td>密码提示：*</td>
         <td><label for="T_Question"></label>
           <select name="T_Question" id="T_Question">
-            <option value="1">请选择问题</option>
+            <option value="1" selected="selected">请选择问题</option>
             <option value="您的生日？">您的生日？</option>
             <option value="您的爱好？">您的爱好？</option>
             <option value="您喜欢的动物？">您喜欢的动物？</option>
             <option value="您喜欢的食物？">您喜欢的食物？</option>
-            <option value="您父亲的姓名？">您父亲的姓名？</option>
-            <option value="您母亲的姓名？">您母亲的姓名？</option>
         </select></td>
         <td> <div align="center">其他：
           <input name="T_Question2" type="text" size="15" maxlength="50"  />

@@ -6,6 +6,7 @@ if(!$_SESSION[T_Username]){
 ?>
 <?php include("Connections/myconn.php");
 $orderdetailfaid = trim($_GET[faid]);
+mysql_query("update apply_form set View = 1 where FA_ID = ".$orderdetailfaid,$myconn);
 $sql = "select FS_ID,S_Name,S_Major,Apply_Time,Order_Time,Order_Info,State from apply_form natural join student where FA_ID = ".$orderdetailfaid;
 $result = mysql_query($sql,$myconn); 
 $orderdetailinfo = mysql_fetch_array($result);

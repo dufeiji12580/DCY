@@ -37,7 +37,7 @@ function chkuserinput(form){
 		alert("该月没有31日!");
 		return(false);
 	}	
-	if(form.hours.value==""||form.hours.value<0 ||form.hours.value>23 || isNaN(form.hours.value)){
+	if(form.hours.value==""||form.hours.value<7 ||form.hours.value>=22 || isNaN(form.hours.value)){
 		alert("小时数不符合规范!");
 		form.hours.select();
 		return(false);
@@ -84,6 +84,8 @@ function chkuserinput(form){
                 <label for="select"></label>
                 <select name="yea" id="select">
                   <?php $nowyea = date('Y');
+				  if(isset($_GET['y']))
+				  	$nowyea = $_GET['y'];
 				for($yea=2013; $yea<=2020; $yea++) {
             	$selected = ($yea == $nowyea) ? 'selected' : '';
             	echo '<option '.$selected.' value="'.$yea.'">'.$yea.'</option>';
@@ -93,6 +95,8 @@ function chkuserinput(form){
                 <label for="select2"></label>
                 <select name="mon" id="select2">
                   <?php $nowmon = date('m');
+				  if(isset($_GET['m']))
+				  	$nowmon = $_GET['m'];
 				for($mon=1; $mon<=12; $mon++) {
             	$selected = ($mon == $nowmon) ? 'selected' : '';
             	echo '<option '.$selected.' value="'.$mon.'">'.$mon.'</option>';
@@ -103,6 +107,8 @@ function chkuserinput(form){
                 <select name="day" id="select3">
                <?php
 				$today = date('j');
+				if(isset($_GET['d']))
+				  	$today = $_GET['d'];
 				for($day=1; $day<=31; $day++) {
             	$selected = ($day == $today) ? 'selected' : '';
             	echo '<option '.$selected.' value="'.$day.'">'.$day.'</option>';
@@ -111,11 +117,21 @@ function chkuserinput(form){
                 日</p>
                 <p>
                   <label for="textfield2"></label>
-                  <input name="hours" type="text" id="textfield2" size="2" maxlength="2" />
+                  <input name="hours" type="text" id="textfield2" 
+                  <?php 
+				  	if(isset($_GET['h']))
+				  	echo "value = ".$_GET['h'];
+				  ?> 
+                  size="2" maxlength="2" />
 时
-<label for="textfield3"></label>
-<input name="minutes" type="text" id="textfield3" size="2" maxlength="2" />
-分</p></td>
+				<label for="textfield3"></label>
+				<input name="minutes" type="text" id="textfield3" 
+				<?php 
+				  	if(isset($_GET['mi']))
+				  	echo "value = ".$_GET['mi'];
+				  ?> 
+				size="2" maxlength="2" />
+			分 (早7点至晚10点)</p></td>
             </tr>
             <tr>
               <td width="332" colspan="2">输入预约请求：</td>

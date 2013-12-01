@@ -12,13 +12,13 @@
   <tr>
     <td width="194" height="150"><table width="194" border="0">
       <tr>
-        <td class = "di" height="50"><div align="center"><a href="stulogin.php">学生登录</a></div></td>
+        <td class = "di" height="45"><div align="center"><a href="stulogin.php">学生登录</a></div></td>
       </tr>
       <tr>
-        <td class = "di" height="50"><p align="center"><a href="tealogin.php">教师登录</a></p></td>
+        <td class = "di" height="45"><p align="center"><a href="tealogin.php">教师登录</a></p></td>
       </tr>
       <tr>
-        <td class = "di" height="50"><div align="center"><a href="adminlogin.php">管理员登录</a></div></td>
+        <td class = "di" height="45"><div align="center"><a href="adminlogin.php">管理员登录</a></div></td>
       </tr>
   </table></td>
   </tr>

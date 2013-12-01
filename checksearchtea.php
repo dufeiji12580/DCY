@@ -7,6 +7,8 @@ if(!$_SESSION[S_Username] && !$_SESSION[T_Username]){
 else{
 	$left = "left_menu_back.php";
 if($_SESSION[S_Username])
+	$rflag = 2;
+else if($_SESSION[T_Username])
 	$rflag = 1;
 else
 	$rflag = 0;
@@ -123,8 +125,10 @@ body {
         </table>
       </div></td>
       <td width="188" rowspan="2" valign="top"><?php 
-	  if($rflag == 1)
-	  	include("right_menu_stu.php"); ?></td>
+	  if($rflag == 2)
+	  	include("right_menu_stu.php");
+	  else if($rflag == 1)
+		 include("right_menu_tea.php");?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">

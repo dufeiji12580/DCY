@@ -1,8 +1,8 @@
 <?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php require_once('Connections/myconn.php'); ?>
 <?php session_start();
-if(!$_SESSION[T_Username]){
-	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
+if(!$_SESSION[S_Username]){
+	  echo "<script language='javascript'>alert('请先以学生登录！');window.location='index.php'</script>";
 }
 ?>
 <?php
@@ -14,7 +14,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FS_ID,FST_ID,S_Name,Stot_Topic,View FROM student natural join stotmessage where T_Username = '".$_SESSION[T_Username]."' order by FST_ID desc";
+$query_Recordset1 = "SELECT FT_ID,FST_ID,T_Name,Stot_Topic,View FROM teacher natural join stotmessage where S_Username = '".$_SESSION[S_Username]."' order by FST_ID desc";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -57,7 +57,7 @@ require_once 'calendar.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>查看留言</title>
+<title>已发送留言</title>
 </head>
 <style type="text/css">
 body {
@@ -65,9 +65,6 @@ body {
 }
 .di {
 	background-color: #09F;
-}
-.di2 {
-	background-color: #999;
 }
 </style>
 <div align="center">
@@ -80,10 +77,9 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="2" valign="top"><div align="center">
-        <table width="471" border="0" >
+      <td width="638" rowspan="2" valign="top" align="center"><table width="471" border="0" >
           <tr>
-            <td colspan="3" align="center">留言列表：</td>
+            <td colspan="3" align="center">已发送留言列表：</td>
             </tr>
             <tr>
             <td colspan="3"><div align="right">共有<?php echo $totalRows_Recordset1; ?>条记录</div></td>
@@ -95,9 +91,9 @@ body {
             </tr>
             <?php do { ?>
             <tr>
-            <td height = "30" <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="143"><a href="stuinfo.php?fsid=<?php echo $row_Recordset1['FS_ID']; ?>"><?php echo $row_Recordset1['S_Name']; ?></a></td>
-            <td <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="244"><?php echo $row_Recordset1['Stot_Topic']; ?></td>
-            <td align="center" width="70"><?php if($totalRows_Recordset1!=0){?><a href="teamessagedetail.php?fstid=<?php echo $row_Recordset1['FST_ID']; ?>">详细</a><?php } ?></td>
+            <td height = "30" class = "di" align="center" width="143"><a href="teainfo.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
+            <td class = "di" align="center" width="244"><?php echo $row_Recordset1['Stot_Topic']; ?></td>
+            <td align="center" width="70"><?php if($totalRows_Recordset1!=0){?><a href="stusendmessagedetail.php?fstid=<?php echo $row_Recordset1['FST_ID']; ?>">详细</a><?php } ?></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
         </table>
@@ -112,9 +108,8 @@ body {
             <td width="137"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
               <?php } // Show if not last page ?></td>
           </tr>
-        </table>
-      </div></td>
-      <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>
+        </table></td>
+      <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php"); ?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">

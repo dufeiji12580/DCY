@@ -149,20 +149,20 @@ body {
         <td width="95">用户名：*</td>
         <td colspan="2"><p>
           <label for="S_Username"></label>
-          <input type="text" name="S_Username"  id="S_Username" />
+          <input name="S_Username" type="text"  id="S_Username" maxlength="20" />
           <input type="button" name="button3" id="button3" onClick="chknc('student',regform.S_Username.value)" value="检查是否可用" />
         </p></td>
       </tr>
       <tr>
         <td>密码：*</td>
         <td colspan="2"><label for="S_Password"></label>
-          <input type="password" name="S_Password" id="S_Password" />
+          <input name="S_Password" type="password" id="S_Password" maxlength="20" />
         密码6到20位</td>
       </tr>
       <tr>
         <td>确认密码：*</td>
         <td colspan="2"><label for="S_Password1"></label>
-          <input type="password" name="S_Password1" id="S_Password1" />
+          <input name="S_Password1" type="password" id="S_Password1" maxlength="20" />
         再次输入密码！</td>
       </tr>
       <tr>

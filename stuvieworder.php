@@ -14,7 +14,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FA_ID,FT_ID,T_Username,T_Name,Apply_Time,S_Username,State FROM teacher natural join apply_form where S_Username = '".$_SESSION[S_Username]."' order by State desc,Apply_Time desc";
+$query_Recordset1 = "SELECT FA_ID,FT_ID,T_Username,T_Name,Apply_Time,S_Username,State,View FROM teacher natural join apply_form where S_Username = '".$_SESSION[S_Username]."' order by State desc,Apply_Time desc";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);

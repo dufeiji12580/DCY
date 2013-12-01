@@ -6,6 +6,7 @@ if(!$_SESSION[T_Username]){
 ?>
 <?php include("Connections/myconn.php");
 $teamessagedetailfstid = trim($_GET[fstid]);
+mysql_query("update stotmessage set View = 1 where FST_ID = ".$teamessagedetailfstid,$myconn);
 $sql = "select FS_ID,S_Name,S_Major,Stot_Topic,Stot_Info,Stot_Time from stotmessage natural join student where FST_ID = ".$teamessagedetailfstid;
 $result = mysql_query($sql,$myconn); 
 $teamessagedetailinfo = mysql_fetch_array($result);

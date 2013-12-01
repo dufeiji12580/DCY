@@ -1,7 +1,7 @@
 <?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php session_start();
 if(!$_SESSION[S_Username]){
-	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
+	  echo "<script language='javascript'>alert('请先以学生登录！');window.location='index.php'</script>";
 }
 ?>
 <?php
@@ -54,6 +54,74 @@ if($teafreetimein)
 	}
 }
 ?>
+<?php
+	$nowyea = date('Y');
+	$nowmon = date('m');
+	$today = date('j');
+	$weekday = date('w');
+	$dayday = array();
+	$monthday = array();
+	$dayday[$weekday] = $today;
+	$nowday = array();
+	$nowday[$weekday] = "class = \"di\"";
+    for($i = 0;$i < 7;$i++)
+	{
+		if($i != $weekday)
+		{
+			$nowday[$i] = "";
+		}
+	}
+	for($i = 0;$i < 7;$i++)
+	{
+		$monthday[$i] = $nowmon;
+	}
+	for($i = 0;$i < 7;$i++)
+	{
+		if($i > $weekday)
+		{
+			$dayday[$i] = $today + $i - $weekday;
+		}
+		else if($i < $weekday)
+		{
+			$dayday[$i] = $today + 7 + $i - $weekday;
+		}
+		if($nowmon == 1 ||$nowmon == 3||$nowmon == 5|$nowmon == 7||$nowmon == 8||$nowmon == 10||$nowmon == 12 )
+		{
+			if($dayday[$i]>31)
+			{
+				$dayday[$i] = $dayday[$i] - 31;
+				$monthday[$i] = ($nowmon+1)%12;
+			}
+		}
+		else if($nowmon == 2)
+		{
+			if($nowyea % 4 == 0 && $nowyea % 400 != 0)
+			{
+				if($dayday[$i]>29)
+				{
+					$dayday[$i] = $dayday[$i] - 29;
+					$monthday[$i] = $nowmon+1;
+				}
+			}
+			else
+			{
+				if($dayday[$i]>28)
+				{
+					$dayday[$i] = $dayday[$i] - 28;
+					$monthday[$i] = $nowmon+1;
+				}
+			}
+		}
+		else
+		{
+			if($dayday[$i]>30)
+			{
+				$dayday[$i] = $dayday[$i] - 30;
+				$monthday[$i] = $nowmon+1;
+			}
+		}
+	}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -81,33 +149,32 @@ body {
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
       <td width="638" rowspan="2" valign="top" align="center">
-		<table width = "200">
+		<table width = "493">
 			<tr>
-				<td align="center">教师空闲时间表</td>
+				<td width="485" height = "30" align="center"><p>教师空闲时间表——<?php echo $freeinfo[T_Name];?></p>
+			    <p>(于<?php echo $teafreetimein[Lastedit];?>最后修改)</p></td>
 			</tr>
-			<tr>
-				<td align="center" height = "30">教师：<?php echo $freeinfo[T_Name];?></td>
-			</tr>
+          </table>
         <table id="CheckBoxList1" width="600" border="1">
-          <tr>
-            <td height="28" align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
-            <td align="center">&nbsp;</td>
+          <tr class="di">
+            <td height="28" align="center">日期</td>
+            <td align="center"><?php echo $monthday[1] ?>月<?php echo $dayday[1] ?>日</td>
+            <td align="center"><?php echo $monthday[2] ?>月<?php echo $dayday[2] ?>日</td>
+            <td align="center"><?php echo $monthday[3] ?>月<?php echo $dayday[3] ?>日</td>
+            <td align="center"><?php echo $monthday[4] ?>月<?php echo $dayday[4] ?>日</td>
+            <td align="center"><?php echo $monthday[5] ?>月<?php echo $dayday[5] ?>日</td>
+            <td align="center"><?php echo $monthday[6] ?>月<?php echo $dayday[6] ?>日</td>
+            <td align="center"><?php echo $monthday[0] ?>月<?php echo $dayday[0] ?>日</td>
           </tr>
           <tr>
             <td width="80" height="28" align="center">&nbsp;</td>
-            <td width="70" align="center">周一</td>
-            <td width="70" align="center">周二</td>
-            <td width="70" align="center">周三</td>
-            <td width="70" align="center">周四</td>
-            <td width="70" align="center">周五</td>
-            <td width="70" align="center">周六</td>
-            <td width="70" align="center">周日</td>
+            <td <?php echo $nowday[1]; ?> width="70" align="center">周一</td>
+            <td <?php echo $nowday[2]; ?> width="70" align="center">周二</td>
+            <td <?php echo $nowday[3]; ?> width="70" align="center">周三</td>
+            <td <?php echo $nowday[4]; ?> width="70" align="center">周四</td>
+            <td <?php echo $nowday[5]; ?> width="70" align="center">周五</td>
+            <td <?php echo $nowday[6]; ?> width="70" align="center">周六</td>
+            <td <?php echo $nowday[0]; ?> width="70" align="center">周日</td>
           </tr>
           <tr>
             <td height="28" align="center">早7-8点</td>
@@ -192,7 +259,7 @@ body {
         </table>
         <table width="200" border="0">
           <tr>
-            <td>&nbsp;</td>
+            <td><a href="stuordertea.php?ftid=<?php echo $freeftid; ?>">预约该教师</a></td>
             <td height = "30"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
           </tr>
       </table></td>

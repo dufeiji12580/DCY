@@ -7,6 +7,8 @@ else{
 	$left = "left_menu_back.php";
 }
 if($_SESSION[S_Username])
+	$rflag = 2;
+else if($_SESSION[T_Username])
 	$rflag = 1;
 else
 	$rflag = 0;
@@ -17,9 +19,9 @@ $sql = "select * from teacher where FT_ID = ".$serchteaftid;
 $result = mysql_query($sql,$myconn); 
 $serchteauserinfo = mysql_fetch_array($result);
 if($serchteauserinfo[T_Sex] == "女")
-	$ta = "她";
+	$ta = "给她留言";
 else
-	$ta = "他";
+	$ta = "给他留言";
 ?>
 <?php
 $params = array();
@@ -48,6 +50,7 @@ body {
 	background-color: #09F;
 }
 </style>
+
 <div align="center">
   <table width="1040" border="0" >
     <tr>
@@ -95,17 +98,21 @@ body {
             <td class = "di"><?php echo $serchteauserinfo[T_Research_Achievement]; ?></td>
           </tr>
       </table>
-        <table width="400" border="0">
+      <?php if($_SESSION[S_Username])
+        echo "<table id=\"Table1\"  width=\"400\" border=\"0\">
           <tr>
-            <td width="65" height="34" align="center"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
-            <td width="90" align="center"><a href="stuordertea.php?ftid=<?php echo $serchteaftid; ?>">预约该教师</a></td>
-            <td width="139" align="center"><a href="stusearchteafreetime.php?ftid=<?php echo $serchteaftid; ?>">查看空闲时间</a></td>
-            <td width="88" align="center"><a href="stuleavemessage.php?ftid=<?php echo $serchteaftid; ?>">给<?php echo $ta;?>留言</a></td>
+            <td width=\"65\" height=\"34\" align=\"center\"><a href=\"$_SERVER[HTTP_REFERER]\">返回</a></td>
+            <td width=\"90\" align=\"center\"><a href=\"stuordertea.php?ftid=$serchteaftid\">预约该教师</a></td>
+            <td width=\"139\" align=\"center\"><a href=\"stusearchteafreetime.php?ftid=$serchteaftid\">查看空闲时间</a></td>
+            <td width=\"88\" align=\"center\"><a href=\"stuleavemessage.php?ftid=$serchteaftid\">$ta</a></td>
           </tr>
-      </table></td>
+      </table>";?>
+      </td>
       <td width="188" rowspan="2" valign="top"><?php 
-	  if($rflag == 1)
-	  	include("right_menu_stu.php"); ?></td>
+	  if($rflag == 2)
+	  	include("right_menu_stu.php"); 
+		 else if($rflag == 1)
+		 include("right_menu_tea.php");?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">

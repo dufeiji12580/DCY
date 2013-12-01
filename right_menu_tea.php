@@ -24,7 +24,7 @@
         <td class = "di" height="50"><p align="center"><a href="teaviewmessage.php">查看留言</a></p></td>
       </tr>
 	  <tr>
-        <td class = "di" height="50"><p align="center"><a href="stuvieworder.php">查看已发送留言</a></p></td>
+        <td class = "di" height="50"><p align="center"><a href="teaviewsendmessage.php">查看已发送留言</a></p></td>
       </tr>
   </table></td>
   </tr>

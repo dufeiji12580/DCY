@@ -28,11 +28,6 @@ if($info==true)
    echo "<script>alert('该用户名已经存在!');history.back();</script>";
    exit;
  }
- else if($info[number] == $S_Number)
- {
-	 echo "<script>alert('该学号已经注册!如果忘记密码，请在登录界面找回密码。');history.back();</script>";
-   exit;
- }
  else
  {  
     mysql_query("insert into student (S_Username,S_Password,S_Name,S_Phone,S_Sex,S_Class,S_Number,S_Email,S_Academy,S_Major,S_Question,S_Answer) values ('$S_Username','$S_Password','$S_Name','$S_Phone','$S_Sex','$S_Class','$S_Number','$S_Email','$S_Academy','$S_Major','$S_Question','$S_Answer')",$myconn);

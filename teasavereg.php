@@ -28,6 +28,7 @@ if($info==true)
  }
  else
  {  
+ 	mysql_query("insert into freetime(T_Username) values ('$T_Username')",$myconn);
     mysql_query("insert into teacher(T_Username,T_Password,T_Name,T_Phone,T_Sex,T_Email,T_Academy,T_Major,T_Question,T_Answer) values ('$T_Username','$T_Password','$T_Name','$T_Phone','$T_Sex','$T_Email','$T_Academy','$T_Major','$T_Question','$T_Answer')",$myconn);
     echo "<script>alert('恭喜，注册成功!');window.location='tealogin.php';</script>";
  }

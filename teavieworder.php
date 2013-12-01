@@ -14,7 +14,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FA_ID,FS_ID,S_Username,S_Name,Apply_Time,T_Username,State FROM student natural join apply_form where T_Username = '".$_SESSION[T_Username]."' order by State desc,Apply_Time desc";
+$query_Recordset1 = "SELECT FA_ID,FS_ID,S_Username,S_Name,Apply_Time,T_Username,State,View FROM student natural join apply_form where T_Username = '".$_SESSION[T_Username]."' order by State desc,Apply_Time desc";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -69,6 +69,9 @@ body {
 .di {
 	background-color: #09F;
 }
+.di2 {
+	background-color: #999;
+}
 </style>
 <div align="center">
   <table width="1040" border="0">
@@ -96,9 +99,9 @@ body {
             </tr>
             <?php do { ?>
             <tr>
-            <td height = "30" class = "di" align="center" width="113"><a href="stuinfo.php?fsid=<?php echo $row_Recordset1['FS_ID']; ?>"><?php echo $row_Recordset1['S_Name']; ?></a></td>
-            <td class = "di" align="center" width="174"><?php echo $row_Recordset1['Apply_Time']; ?></td>
-            <td class = "di" align="center" width="110">
+            <td height = "30" <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="113"><a href="stuinfo.php?fsid=<?php echo $row_Recordset1['FS_ID']; ?>"><?php echo $row_Recordset1['S_Name']; ?></a></td>
+            <td <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="174"><?php echo $row_Recordset1['Apply_Time']; ?></td>
+            <td <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="110">
 			<?php if($row_Recordset1['State'] == "w")
 					$state = "等待处理";
 			else if($row_Recordset1['State'] == "p")
