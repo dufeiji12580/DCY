@@ -29,6 +29,9 @@
 	  <tr>
 	    <td class = "di" height="50"><p align="center"><a href="stuviewsendmessage.php">查看已发送留言</a></p></td>
 	    </tr>
+	  <tr>
+	    <td class = "di" height="50" align="center"><a href="stuviewprefertea.php">我的关注</a></td>
+	    </tr>
     </table></td>
   </tr>
 </table>

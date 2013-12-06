@@ -18,6 +18,21 @@ $serchteaftid = trim($_GET[ftid]);
 $sql = "select * from teacher where FT_ID = ".$serchteaftid;
 $result = mysql_query($sql,$myconn); 
 $serchteauserinfo = mysql_fetch_array($result);
+if(isset($_GET[pre]) && $_GET[pre] == "pre")
+{
+	$sql = "select * from prefer where T_Username = '".$serchteauserinfo[T_Username]."' and S_Username = '".$_SESSION[S_Username]."'";
+	$result = mysql_query($sql,$myconn);
+	$preinfo = mysql_fetch_array($result);
+	if($preinfo != true)
+	{
+		mysql_query("insert into prefer(S_Username,T_Username) values('$_SESSION[S_Username]','$serchteauserinfo[T_Username]')" );
+		echo "<script>alert('关注成功!');</script>";
+	}
+	else
+	{
+		echo "<script>alert('您已关注!');</script>";
+	}
+}
 if($serchteauserinfo[T_Sex] == "女")
 	$ta = "给她留言";
 else
@@ -101,9 +116,9 @@ body {
       <?php if($_SESSION[S_Username])
         echo "<table id=\"Table1\"  width=\"400\" border=\"0\">
           <tr>
-            <td width=\"65\" height=\"34\" align=\"center\"><a href=\"$_SERVER[HTTP_REFERER]\">返回</a></td>
-            <td width=\"90\" align=\"center\"><a href=\"stuordertea.php?ftid=$serchteaftid\">预约该教师</a></td>
-            <td width=\"139\" align=\"center\"><a href=\"stusearchteafreetime.php?ftid=$serchteaftid\">查看空闲时间</a></td>
+			<td width=\"95\" align=\"center\"><a href=\"teainfo.php?ftid=$serchteaftid&pre=pre\">关注该教师</a></td>
+            <td width=\"95\" align=\"center\"><a href=\"stuordertea.php?ftid=$serchteaftid\">预约该教师</a></td>
+            <td width=\"100\" align=\"center\"><a href=\"stusearchteafreetime.php?ftid=$serchteaftid\">查看空闲时间</a></td>
             <td width=\"88\" align=\"center\"><a href=\"stuleavemessage.php?ftid=$serchteaftid\">$ta</a></td>
           </tr>
       </table>";?>

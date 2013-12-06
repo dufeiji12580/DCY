@@ -185,7 +185,7 @@ body {
           <tr>
             <td>&nbsp;</td>
             <td width="151"><input type="submit" name="button" id="button" value="确认" /></td>
-            <td width="198"><input type="reset" name="button2" id="button2" value="重置" /></td>
+            <td width="198">&nbsp;</td>
           </tr>
         </table>
       </form></td>

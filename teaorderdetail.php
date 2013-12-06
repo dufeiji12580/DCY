@@ -7,9 +7,10 @@ if(!$_SESSION[T_Username]){
 <?php include("Connections/myconn.php");
 $orderdetailfaid = trim($_GET[faid]);
 mysql_query("update apply_form set View = 1 where FA_ID = ".$orderdetailfaid,$myconn);
-$sql = "select FS_ID,S_Name,S_Major,Apply_Time,Order_Time,Order_Info,State from apply_form natural join student where FA_ID = ".$orderdetailfaid;
+$sql = "select FS_ID,S_Name,S_Major,Apply_Time,Order_Time,Order_Info,Reply_Info,State from apply_form natural join student where FA_ID = ".$orderdetailfaid;
 $result = mysql_query($sql,$myconn); 
 $orderdetailinfo = mysql_fetch_array($result);
+$nowtime = date('Y-m-j H:i:s',time());
 ?>
 <?php
 $params = array();
@@ -91,14 +92,18 @@ body {
           <td colspan="2" valign="top" class="di"><?php echo $orderdetailinfo[Order_Info];?></td>
         </tr>
         <tr>
+          <td valign="top">预约反馈：</td>
+          <td colspan="2" valign="top" class="di"><?php echo $orderdetailinfo[Reply_Info];?></td>
+        </tr>
+        <tr>
           <td colspan="3">&nbsp;</td>
           </tr>
         <tr>
           <td><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
-          <td width="147"><?php if($orderdetailinfo[State]=="w"){?>
+          <td width="147"><?php if($orderdetailinfo[State]!="p"&&strtotime($orderdetailinfo[Order_Time]) > strtotime($nowtime)){?>
           <a href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=agree">同意请求</a><?php }?>
           </td>
-          <td width="168"><?php if($orderdetailinfo[State]=="w"){?>
+          <td width="168"><?php if($orderdetailinfo[State]!="p"&&strtotime($orderdetailinfo[Order_Time]) > strtotime($nowtime)){?>
           <a href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=disagree">拒绝请求</a><?php }?>
           </td>
         </tr>

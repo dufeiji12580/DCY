@@ -1,3 +1,4 @@
+<?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php require_once('Connections/myconn.php'); ?>
 <?php
 $params = array();

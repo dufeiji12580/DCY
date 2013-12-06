@@ -35,7 +35,7 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="2" valign="top">你好</td>
+      <td width="638" rowspan="2" valign="top">您好！</td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php"); ?></td>
     </tr>
     <tr>
