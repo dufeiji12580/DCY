@@ -1,24 +1,53 @@
-<?php require_once('Connections/myconn.php'); 
-header("Content-Type:text/html; charset=utf-8");?>
+<?php header("Content-Type:text/html; charset=utf-8"); ?>
 <?php session_start();
-if(!$_SESSION[T_Username]){
-	  echo "<script language='javascript'>alert('请先以教师登录！');window.location='index.php'</script>";
+if(!$_SESSION[S_Username]){
+	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
 }
 ?>
 <?php
-if(!isset($_GET[search]))
-	$searchname = "";
-else
-	$searchname = $_GET[search];
-$currentPage = $_SERVER["PHP_SELF"];
+include("Connections/myconn.php");
+$year = $_GET[y];
+$month = $_GET[m];
+$day = $_GET[d];
+$hours = $_GET[h];
+$minutes = $_GET[mi];
+$weekday = date("l",mktime($hours,$minutes,0,$month,$day,$year));
 
+if($hours == 7 && $minutes <= 45)
+	$keypoint = 0;
+else if($hours == 8 || ($hours == 9 && $minutes <= 45) || ($hours == 7 && $minutes > 45))
+	$keypoint = 1;
+else if($hours == 10 || ($hours == 9 && $minutes > 45) || ($hours == 11 && $minutes <= 45))
+	$keypoint = 2;
+else if($hours == 12 || ($hours == 11 && $minutes > 45) || ($hours == 13 && $hours <= 30))
+	$keypoint = 3;
+else if(($hours == 13 && $hours > 30)|| $hours == 14 || ($hours == 15 && $hours <= 30))
+	$keypoint = 4;
+else if(($hours == 15 && $hours > 30) || $hours == 16 || ($hours == 17 && $hours <= 30))
+	$keypoint = 5;
+else if(($hours == 17 && $hours > 30) ||$hours == 18 || $hours == 19 || $hours == 20)
+	$keypoint = 6;
+else if($hours == 21)
+	$keypoint = 7;
+$keyresult =  "00000000";
+for($i = 0;$i <8;$i++)
+{
+	if($i != $keypoint)
+		$keyresult[$i] = '_';
+	else
+		$keyresult[$i] = '0';
+}
+?>
+
+<?php
+$currentPage = $_SERVER["PHP_SELF"];
 $maxRows_Recordset1 = 10;
 $pageNum_Recordset1 = 0;
 if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FS_ID, S_Username, S_Name, S_Major FROM student where S_Name like '%".$searchname."%'";
+$query_Recordset1 = "select FT_ID,T_Username,T_Name,T_Academy from freetime natural join teacher where $weekday like '$keyresult'";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -47,8 +76,6 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 }
 $queryString_Recordset1 = sprintf("&totalRows_Recordset1=%d%s", $totalRows_Recordset1, $queryString_Recordset1);
 ?>
-
-
 <?php
 $params = array();
 if (isset($_GET['year']) && isset($_GET['month'])) {
@@ -57,27 +84,21 @@ if (isset($_GET['year']) && isset($_GET['month'])) {
         'month' => $_GET['month'],
     );
 }
-require_once ('calendar.php');
+require_once 'calendar.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>学生查看</title>
+<title>匹配结果</title>
 </head>
 <style type="text/css">
 body {
 	background-color: #CCCCCC;
 }
 </style>
-<style type="text/css">
-
-.di {
-	background-color: #09F;
-}
-</style>
 <div align="center">
-  <table width="1040" border="0" >
+  <table width="1040" border="0">
     <tr>
       <td colspan="3"><?php include("head.php"); ?>
   <tr>
@@ -85,27 +106,30 @@ body {
     <tr>
     <td colspan="3"></tr>
     <tr>
-      <td width="201" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="637" rowspan="2" valign="top"><div align="center">
-        <table width="350" border="0" >
+      <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
+      <td width="638" rowspan="2" valign="top" align="center"><?php if($totalRows_Recordset1!=0){?><table width="560" border="0" >
           <tr>
-            <td colspan="2" align="center">学生列表：</td>
+            <td colspan="4" align="center">匹配教师列表：</td>
             </tr>
             <tr>
-            <td colspan="2"><div align="right">共有<?php echo $totalRows_Recordset1; ?>条记录</div></td>
+            <td colspan="4"><div align="right">共有<?php echo $totalRows_Recordset1; ?>条记录</div></td>
             </tr>
             <tr>
-              <td align="center" width="168">姓名</td>
-              <td align="center" width="172">专业</td>
+              <td align="center" width="143">姓名</td>
+              <td align="center" width="229">学院</td>
+              <td align="center" width="85">&nbsp;</td>
+              <td align="center" width="50">&nbsp;</td>
             </tr>
             <?php do { ?>
             <tr>
-            <td height = "30" class = "di" align="center" width="168"><a href="stuinfo.php?fsid=<?php echo $row_Recordset1['FS_ID']; ?>"><?php echo $row_Recordset1['S_Name']; ?></a></td>
-            <td class = "di" align="center" width="172"><?php echo $row_Recordset1['S_Major']; ?></td>
+            <td height = "30" class = "di" align="center" width="143"><a href="teainfo.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
+            <td class = "di" align="center" width="229"><?php echo $row_Recordset1['T_Academy']; ?></td>
+            <td align="center" width="85"><a href="stusearchteafreetime.php?ftid=<?php echo $row_Recordset1['FT_ID'];?>">空闲时间</a></td>
+            <td align="center" width="50"><a href="stuordertea.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>&y=<?php echo $year; ?>&m=<?php echo $month; ?>&d=<?php echo $day; ?>&h=<?php echo $hours; ?>&mi=<?php echo $minutes; ?>">预约</a></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
         </table>
-        <table width="291" border="0">
+        <table width="350" border="0">
           <tr>
             <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, 0, $queryString_Recordset1); ?>">[第一页]</a>
               <?php } // Show if not first page ?></td>
@@ -113,27 +137,26 @@ body {
               <?php } // Show if not first page ?></td>
             <td width="65"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, min($totalPages_Recordset1, $pageNum_Recordset1 + 1), $queryString_Recordset1); ?>">[下一页]</a>
               <?php } // Show if not last page ?></td>
-            <td width="78"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
+            <td width="137"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
               <?php } // Show if not last page ?></td>
           </tr>
-        </table>
-      </div></td>
-      <td width="188" rowspan="2" valign="top"><?php 
-	  	include("right_menu_tea.php");?></td>
+        </table></td>
+      <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php"); ?></td>
     </tr>
     <tr>
       <td valign="top"><table width="200" border="0">
         <tr>
-          <td width="194"> <?php
+          <td width="194"><?php
                 $cal = new Calendar($params);
                 $cal->display();
             ?></td>
           </tr>
-      </table></td>
+      </table><?php } else echo "没有匹配结果！";?></td>
     </tr>
     <tr>
       <td  colspan="3"><?php include("bottom.php");?></td>
     </tr>
   </table>
 </div>
+
 </html>

@@ -24,7 +24,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FT_ID, T_Username, T_Name, T_Academy FROM teacher where T_Name like '%".$searchname."%'";
+$query_Recordset1 = "SELECT FT_ID, T_Username, T_Name, T_Academy FROM teacher where T_Name like '%".$searchname."%' order by T_Academy";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);

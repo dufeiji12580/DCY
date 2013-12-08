@@ -4,6 +4,10 @@ if(!$_SESSION[S_Username]){
 	  echo "<script language='javascript'>alert('请先登录！');window.location='index.php'</script>";
 }
 ?>
+<?php include("Connections/myconn.php");
+	$result =mysql_query("select * from ttosmessage where S_Username = '$_SESSION[S_Username]' and View = 0 and studelete = 0",$myconn);
+	$stumessnuminfo = mysql_num_rows($result);
+?>
 <?php
 $params = array();
 if (isset($_GET['year']) && isset($_GET['month'])) {
@@ -35,7 +39,21 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="2" valign="top">您好！</td>
+      <td width="638" rowspan="2" valign="top" align="center">您好，欢迎回来！您有<?php echo $stumessnuminfo; ?>条未读<a href="stuviewmessage.php">留言</a>
+        <table width="200" border="0">
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+      </table></td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php"); ?></td>
     </tr>
     <tr>

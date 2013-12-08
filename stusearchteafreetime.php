@@ -260,7 +260,7 @@ body {
         <table width="200" border="0">
           <tr>
             <td><a href="stuordertea.php?ftid=<?php echo $freeftid; ?>">预约该教师</a></td>
-            <td height = "30">&nbsp;</td>
+            <td height = "30"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
           </tr>
       </table></td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_stu.php"); ?></td>

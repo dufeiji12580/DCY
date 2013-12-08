@@ -70,7 +70,7 @@ require_once 'calendar.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>查看</title>
+<title>查看预约</title>
 </head>
 <style type="text/css">
 body {

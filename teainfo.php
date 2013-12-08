@@ -18,21 +18,6 @@ $serchteaftid = trim($_GET[ftid]);
 $sql = "select * from teacher where FT_ID = ".$serchteaftid;
 $result = mysql_query($sql,$myconn); 
 $serchteauserinfo = mysql_fetch_array($result);
-if(isset($_GET[pre]) && $_GET[pre] == "pre")
-{
-	$sql = "select * from prefer where T_Username = '".$serchteauserinfo[T_Username]."' and S_Username = '".$_SESSION[S_Username]."'";
-	$result = mysql_query($sql,$myconn);
-	$preinfo = mysql_fetch_array($result);
-	if($preinfo != true)
-	{
-		mysql_query("insert into prefer(S_Username,T_Username) values('$_SESSION[S_Username]','$serchteauserinfo[T_Username]')" );
-		echo "<script>alert('关注成功!');</script>";
-	}
-	else
-	{
-		echo "<script>alert('您已关注!');</script>";
-	}
-}
 if($serchteauserinfo[T_Sex] == "女")
 	$ta = "给她留言";
 else
@@ -76,13 +61,13 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include($left); ?></td>
-      <td width="638" rowspan="2" valign="top" align="center"><table width="400" border="0">
+      <td width="638" rowspan="2" valign="top" align="center"><table width="549" border="0">
           <tr>
             <td colspan="2" align="center">教师信息</td>
           </tr>
           <tr >
             <td width="85">姓名：</td>
-            <td width="305" class = "di"><?php echo $serchteauserinfo[T_Name]; ?></td>
+            <td width="454" class = "di"><?php echo $serchteauserinfo[T_Name]; ?></td>
           </tr>
           <tr>
             <td >学院：</td>
@@ -116,7 +101,7 @@ body {
       <?php if($_SESSION[S_Username])
         echo "<table id=\"Table1\"  width=\"400\" border=\"0\">
           <tr>
-			<td width=\"95\" align=\"center\"><a href=\"teainfo.php?ftid=$serchteaftid&pre=pre\">关注该教师</a></td>
+			<td width=\"95\" align=\"center\"><a href=\"stusaveprefer.php?ftid=$serchteaftid&pre=pre\">关注该教师</a></td>
             <td width=\"95\" align=\"center\"><a href=\"stuordertea.php?ftid=$serchteaftid\">预约该教师</a></td>
             <td width=\"100\" align=\"center\"><a href=\"stusearchteafreetime.php?ftid=$serchteaftid\">查看空闲时间</a></td>
             <td width=\"88\" align=\"center\"><a href=\"stuleavemessage.php?ftid=$serchteaftid\">$ta</a></td>
