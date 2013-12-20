@@ -26,6 +26,7 @@ require_once ('calendar.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="style/link.css">
 <title>主页</title>
 </head>
 <style type="text/css">
@@ -60,8 +61,8 @@ body {
           </tr>
           <?php do { ?>
         <tr>
-          <td width="120" align="center" height="30">[<a href="<?php echo $newsinfo[N_Label_Url];?>" target="_blank"><?php echo $newsinfo[N_Label]; ?></a>]</td>
-          <td width="565" ><a href="<?php echo $newsinfo[N_News_Url];?>" target="_blank"><?php echo $newsinfo[N_News]; ?></a></td>
+          <td width="120" align="center" height="30">[<a class="SelectedLeftMenu" href="<?php echo $newsinfo[N_Label_Url];?>" target="_blank"><?php echo $newsinfo[N_Label]; ?></a>]</td>
+          <td width="565" ><a class="SelectedLeftMenu" href="<?php echo $newsinfo[N_News_Url];?>" target="_blank"><?php echo $newsinfo[N_News]; ?></a></td>
         </tr>
         <?php } while ($newsinfo = mysql_fetch_assoc($newsresult)); ?>
       </table></td>

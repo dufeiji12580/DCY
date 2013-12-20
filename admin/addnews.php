@@ -8,6 +8,7 @@ if(!$_SESSION[A_Username]){
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="../style/link.css">
 <title>添加新闻</title>
 </head>
 <style type="text/css">
@@ -27,10 +28,10 @@ body {
     <tr>
       <td height="32" align="center"><table width="418" border="0">
         <tr>
-          <td width="100" height="31" class="di"><a href="tealist.php">管理教师信息</a></td>
-          <td width="100" class="di"><a href="stulist.php">管理学生信息</a></td>
-          <td width="100" class="di"><a href="addnews.php">加入新闻信息</a></td>
-          <td width="100" class="di"><a href="setshow.php">设置主页显示</a></td>
+          <td width="100" height="31" class="di"><a class="SelectedLeftMenu" href="tealist.php">管理教师信息</a></td>
+          <td width="100" class="di"><a class="SelectedLeftMenu" href="stulist.php">管理学生信息</a></td>
+          <td width="100" class="di"><a class="SelectedLeftMenu" href="addnews.php">加入新闻信息</a></td>
+          <td width="100" class="di"><a class="SelectedLeftMenu" href="setshow.php">设置主页显示</a></td>
           </tr>
       </table></td>
     </tr>

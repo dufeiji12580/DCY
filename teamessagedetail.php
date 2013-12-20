@@ -57,7 +57,7 @@ body {
         </tr>
         <tr>
           <td width="53">学生：</td>
-          <td colspan="2" class="di"><a href="stuinfo.php?fsid=<?php echo $teamessagedetailinfo[FS_ID]; ?>"><?php echo $teamessagedetailinfo[S_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
+          <td colspan="2" class="di"><a class="SelectedLeftMenu" href="stuinfo.php?fsid=<?php echo $teamessagedetailinfo[FS_ID]; ?>"><?php echo $teamessagedetailinfo[S_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
           </tr>
         <tr>
           <td>专业：</td>
@@ -82,8 +82,8 @@ body {
         </tr>
         <tr>
           <td>&nbsp;</td>
-          <td width="166" align="center"><a href="tealeavemessage.php?fsid=<?php echo $teamessagedetailinfo[FS_ID];?>">回复留言</a></td>
-          <td width="200" align="center"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
+          <td width="166" align="center"><a class="SelectedLeftMenu" href="tealeavemessage.php?fsid=<?php echo $teamessagedetailinfo[FS_ID];?>">回复留言</a></td>
+          <td width="200" align="center"><a class="SelectedLeftMenu" href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
         </tr>
       </table></td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>

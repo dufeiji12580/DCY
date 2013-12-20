@@ -27,7 +27,7 @@ if (isset($_GET['pageNum_Recordset1'])) {
   $pageNum_Recordset1 = $_GET['pageNum_Recordset1'];
 }
 $startRow_Recordset1 = $pageNum_Recordset1 * $maxRows_Recordset1;
-$query_Recordset1 = "SELECT FA_ID,FS_ID,S_Username,S_Name,Apply_Time,T_Username,State,View FROM student natural join apply_form where T_Username = '".$_SESSION[T_Username]."' and teadelete = 0 order by State desc,Apply_Time desc";
+$query_Recordset1 = "SELECT FA_ID,FS_ID,S_Username,S_Name,Apply_Time,T_Username,State,View FROM student natural join apply_form where T_Username = '".$_SESSION[T_Username]."' and teadelete = 0 order by Apply_Time desc";
 $query_limit_Recordset1 = sprintf("%s LIMIT %d, %d", $query_Recordset1, $startRow_Recordset1, $maxRows_Recordset1);
 $Recordset1 = mysql_query($query_limit_Recordset1, $myconn) or die(mysql_error());
 $row_Recordset1 = mysql_fetch_assoc($Recordset1);
@@ -135,7 +135,7 @@ function deldata()
             <?php do { ?>
             <tr>
               <td <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="31"><input type="checkbox" name="check[]" id="checkbox" value = "<?php echo $row_Recordset1['FA_ID']; ?>"/></td>
-            <td height = "30" <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="143"><a href="stuinfo.php?fsid=<?php echo $row_Recordset1['FS_ID']; ?>"><?php echo $row_Recordset1['S_Name']; ?></a></td>
+            <td height = "30" <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="143"><a class="SelectedLeftMenu" href="stuinfo.php?fsid=<?php echo $row_Recordset1['FS_ID']; ?>"><?php echo $row_Recordset1['S_Name']; ?></a></td>
             <td <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="173"><?php echo $row_Recordset1['Apply_Time']; ?></td>
             <td <?php if($row_Recordset1['View'] == 1) echo "class = \"di2\""; else echo "class = \"di\"";?> align="center" width="81">
 			<?php if($row_Recordset1['State'] == "w")
@@ -149,20 +149,20 @@ function deldata()
 			?>
 			<?php echo $state; ?>
 			</td>
-            <td align="center" width="50"><a href="teaorderdetail.php?faid=<?php echo $row_Recordset1['FA_ID']; ?>">详细</a></td>
+            <td align="center" width="50"><a class="SelectedLeftMenu" href="teaorderdetail.php?faid=<?php echo $row_Recordset1['FA_ID']; ?>">详细</a></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
         </table>
         <table width="419" border="0">
           <tr>
             <td width="65"><input id=cmdAdd onclick=javascript:deldata(); type=button value="删除" name=cmdDel></td>
-            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, 0, $queryString_Recordset1); ?>">[第一页]</a>
+            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, 0, $queryString_Recordset1); ?>">[第一页]</a>
               <?php } // Show if not first page ?></td>
-            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, max(0, $pageNum_Recordset1 - 1), $queryString_Recordset1); ?>">[上一页]</a>
+            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, max(0, $pageNum_Recordset1 - 1), $queryString_Recordset1); ?>">[上一页]</a>
               <?php } // Show if not first page ?></td>
-            <td width="65"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, min($totalPages_Recordset1, $pageNum_Recordset1 + 1), $queryString_Recordset1); ?>">[下一页]</a>
+            <td width="65"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, min($totalPages_Recordset1, $pageNum_Recordset1 + 1), $queryString_Recordset1); ?>">[下一页]</a>
               <?php } // Show if not last page ?></td>
-            <td width="137"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
+            <td width="137"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
               <?php } // Show if not last page ?></td>
           </tr>
         </table><?php } else echo "当前没有预约！";?></form>

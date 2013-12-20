@@ -93,8 +93,8 @@ body {
           <td colspan="2">&nbsp;</td>
         </tr>
         <tr>
-          <td colspan="2" align="center"><a href="tealeavemessage.php?fsid=<?php echo $fsid;?>">给<?php echo $ta;?>留言</a></td>
-          <td width="185" align="center"><a href="<?php echo $father;?>">返回</a></td>
+          <td colspan="2" align="center"><a class="SelectedLeftMenu" href="tealeavemessage.php?fsid=<?php echo $fsid;?>">给<?php echo $ta;?>留言</a></td>
+          <td width="185" align="center"><a class="SelectedLeftMenu" href="<?php echo $father;?>">返回</a></td>
         </tr>
       </table></td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>

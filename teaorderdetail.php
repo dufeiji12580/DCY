@@ -58,7 +58,7 @@ body {
         </tr>
         <tr>
           <td width="91">学生：</td>
-          <td colspan="2" class="di"><a href="stuinfo.php?fsid=<?php echo $orderdetailinfo[FS_ID]; ?>"><?php echo $orderdetailinfo[S_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
+          <td colspan="2" class="di"><a class="SelectedLeftMenu" href="stuinfo.php?fsid=<?php echo $orderdetailinfo[FS_ID]; ?>"><?php echo $orderdetailinfo[S_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
           </tr>
         <tr>
           <td>专业：</td>
@@ -99,12 +99,12 @@ body {
           <td colspan="3">&nbsp;</td>
           </tr>
         <tr>
-          <td><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
+          <td><a class="SelectedLeftMenu" href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
           <td width="147"><?php if($orderdetailinfo[State]!="p"&&strtotime($orderdetailinfo[Order_Time]) > strtotime($nowtime)){?>
-          <a href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=agree">同意请求</a><?php }?>
+          <a class="SelectedLeftMenu" href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=agree">同意请求</a><?php }?>
           </td>
           <td width="168"><?php if($orderdetailinfo[State]!="p"&&strtotime($orderdetailinfo[Order_Time]) > strtotime($nowtime)){?>
-          <a href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=disagree">拒绝请求</a><?php }?>
+          <a class="SelectedLeftMenu" href="teareplyorder.php?faid=<?php echo $orderdetailfaid;?>&ifagree=disagree">拒绝请求</a><?php }?>
           </td>
         </tr>
       </table></td>

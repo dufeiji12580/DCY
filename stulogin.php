@@ -93,8 +93,8 @@ body {
     
     <tr>
       <td>&nbsp;</td>
-      <td width="45"><a href="sturegister.php">注册</a></td>
-      <td width="72"><a href="stulostpassword.php">忘记密码</a></td>
+      <td width="45"><a class="SelectedLeftMenu" href="sturegister.php">注册</a></td>
+      <td width="72"><a class="SelectedLeftMenu" href="stulostpassword.php">忘记密码</a></td>
       <td width="6">&nbsp;</td>
       <td width="28">&nbsp;</td>
     </tr>

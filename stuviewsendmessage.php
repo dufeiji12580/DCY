@@ -128,22 +128,22 @@ function deldata()
             <?php do { ?>
             <tr>
               <td class = "di" align="center" width="30"><input type="checkbox" name="check[]" id="checkbox" value = "<?php echo $row_Recordset1['FST_ID']; ?>"/></td>
-            <td height = "30" class = "di" align="center" width="143"><a href="teainfo.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
+            <td height = "30" class = "di" align="center" width="143"><a class="SelectedLeftMenu" href="teainfo.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
             <td class = "di" align="center" width="217"><?php echo $row_Recordset1['Stot_Topic']; ?></td>
-            <td align="center" width="44"><a href="stusendmessagedetail.php?fstid=<?php echo $row_Recordset1['FST_ID']; ?>">详细</a></td>
+            <td align="center" width="44"><a class="SelectedLeftMenu" href="stusendmessagedetail.php?fstid=<?php echo $row_Recordset1['FST_ID']; ?>">详细</a></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
         </table>
         <table width="419" border="0">
           <tr>
             <td width="65"><input id=cmdAdd onclick=javascript:deldata(); type=button value="删除" name=cmdDel></td>
-            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, 0, $queryString_Recordset1); ?>">[第一页]</a>
+            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, 0, $queryString_Recordset1); ?>">[第一页]</a>
               <?php } // Show if not first page ?></td>
-            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, max(0, $pageNum_Recordset1 - 1), $queryString_Recordset1); ?>">[上一页]</a>
+            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, max(0, $pageNum_Recordset1 - 1), $queryString_Recordset1); ?>">[上一页]</a>
               <?php } // Show if not first page ?></td>
-            <td width="65"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, min($totalPages_Recordset1, $pageNum_Recordset1 + 1), $queryString_Recordset1); ?>">[下一页]</a>
+            <td width="65"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, min($totalPages_Recordset1, $pageNum_Recordset1 + 1), $queryString_Recordset1); ?>">[下一页]</a>
               <?php } // Show if not last page ?></td>
-            <td width="137"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
+            <td width="137"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
               <?php } // Show if not last page ?></td>
           </tr>
         </table><?php } else echo "当前没有已发送留言！";?></form></td>
