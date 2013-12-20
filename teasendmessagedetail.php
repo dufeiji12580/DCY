@@ -49,7 +49,7 @@ body {
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
       <td width="638" rowspan="2" valign="top" align="center"><table width="433" border="0">
         <tr>
-          <td colspan="3" align="center">已发送留言详情：</td>
+          <td colspan="3" align="center">留言详情：</td>
           </tr>
         <tr>
           <td colspan="3" align="center">&nbsp;</td>
