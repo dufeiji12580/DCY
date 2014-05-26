@@ -41,7 +41,7 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="2" valign="top">您好，欢迎回来！您有<?php echo $teamessnuminfo; ?>条未读<a class="SelectedLeftMenu" href="teaviewmessage.php">留言</a>和<?php echo $teaordernuminfo; ?>条<a class="SelectedLeftMenu" href="teavieworder.php">预约</a>请求</td>
+      <td width="638" rowspan="2" valign="top">您好，欢迎回来！您有<?php echo $teamessnuminfo; ?>条未读<a href="teaviewmessage.php">留言</a>和<?php echo $teaordernuminfo; ?>条<a href="teavieworder.php">预约</a>请求</td>
       <td width="188" rowspan="2" valign="top"><?php include("right_menu_tea.php"); ?></td>
     </tr>
     <tr>

@@ -53,7 +53,6 @@ $queryString_Recordset1 = sprintf("&totalRows_Recordset1=%d%s", $totalRows_Recor
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="../style/link.css">
 <title>教师列表</title>
 </head>
 <style type="text/css">
@@ -83,10 +82,10 @@ function chkuserinput(form){
     <tr>
       <td align="center"><table width="418" border="0">
         <tr>
-          <td width="100" height="31" class="di"><a class="SelectedLeftMenu" href="tealist.php">管理教师信息</a></td>
-          <td width="100" class="di"><a class="SelectedLeftMenu" href="stulist.php">管理学生信息</a></td>
-          <td width="100" class="di"><a class="SelectedLeftMenu" href="addnews.php">加入新闻信息</a></td>
-          <td width="100" class="di"><a class="SelectedLeftMenu" href="setshow.php">设置主页显示</a></td>
+          <td width="100" height="31" class="di"><a href="tealist.php">管理教师信息</a></td>
+          <td width="100" class="di"><a href="stulist.php">管理学生信息</a></td>
+          <td width="100" class="di"><a href="addnews.php">加入新闻信息</a></td>
+          <td width="100" class="di"><a href="setshow.php">设置主页显示</a></td>
         </tr>
       </table></td>
     </tr>
@@ -96,7 +95,7 @@ function chkuserinput(form){
           <td colspan="3" align="center">教师列表：</td>
         </tr>
         <tr>
-          <td><form id="form2" name="form2" method="post" action="tealist.php" onSubmit="return chkuserinput(this)" >
+          <td><form id="form2" name="form2" method="post" action="" onSubmit="return chkuserinput(this)" >
             <label for="textfield"></label>
             <input name="searchtea" type="text" id="textfield" size="6" />
             <input type="submit" name="button" id="button" value="搜索" />
@@ -110,7 +109,7 @@ function chkuserinput(form){
         </tr>
         <?php do { ?>
         <tr>
-          <td class = "di" align="center" width="167"><a class="SelectedLeftMenu" href="modifytea.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Username']; ?></a></td>
+          <td class = "di" align="center" width="167"><a href="modifytea.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Username']; ?></a></td>
           <td height = "30" class = "di" align="center" width="143"><?php echo $row_Recordset1['T_Name']; ?></td>
           <td class = "di" align="center" width="187"><?php echo $row_Recordset1['T_Academy']; ?></td>
         </tr>
@@ -119,16 +118,16 @@ function chkuserinput(form){
         <table width="302" border="0">
           <tr>
             <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?>
-              <a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, 0, $queryString_Recordset1); ?>">[第一页]</a>
+              <a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, 0, $queryString_Recordset1); ?>">[第一页]</a>
               <?php } // Show if not first page ?></td>
             <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?>
-              <a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, max(0, $pageNum_Recordset1 - 1), $queryString_Recordset1); ?>">[上一页]</a>
+              <a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, max(0, $pageNum_Recordset1 - 1), $queryString_Recordset1); ?>">[上一页]</a>
               <?php } // Show if not first page ?></td>
             <td width="65"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?>
-              <a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, min($totalPages_Recordset1, $pageNum_Recordset1 + 1), $queryString_Recordset1); ?>">[下一页]</a>
+              <a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, min($totalPages_Recordset1, $pageNum_Recordset1 + 1), $queryString_Recordset1); ?>">[下一页]</a>
               <?php } // Show if not last page ?></td>
             <td width="89"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?>
-              <a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
+              <a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
               <?php } // Show if not last page ?></td>
           </tr>
       </table></td>

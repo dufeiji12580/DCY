@@ -1,5 +1,4 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="../style/link.css">
 <style type="text/css">
 @import url("../webfonts/方正舒体/stylesheet.css");
 .top {
@@ -21,7 +20,7 @@
       <div align="center"></div></td>
     </tr>
     <tr>
-      <td height="23" align="right" class="guanli"><?php if($_SESSION[A_Username]) echo "欢迎您：管理员$_SESSION[A_Username]  <a class=\"SelectedLeftMenu\" href=\"logout.php\">注销</a>";?></td>
+      <td height="23" align="right" class="guanli"><?php if($_SESSION[A_Username]) echo "欢迎您：管理员$_SESSION[A_Username]  <a href=\"logout.php\">注销</a>";?></td>
     </tr>
   </table>
 </div>

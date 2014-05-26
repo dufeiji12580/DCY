@@ -103,7 +103,7 @@ function chkuserinput(form){
             </tr>
             <tr>
               <td width="171" height="21"><input type="submit" name="button" id="button" value="确认" /></td>
-              <td width="175"><a class="SelectedLeftMenu" href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
+              <td width="175"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
             </tr>
           </table>
       </form></td>

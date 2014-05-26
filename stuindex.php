@@ -39,7 +39,7 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="200" valign="top"><?php include("left_menu_back.php"); ?></td>
-      <td width="638" rowspan="2" valign="top" align="center">您好，欢迎回来！您有<?php echo $stumessnuminfo; ?>条未读<a class="SelectedLeftMenu" href="stuviewmessage.php">留言</a>
+      <td width="638" rowspan="2" valign="top" align="center">您好，欢迎回来！您有<?php echo $stumessnuminfo; ?>条未读<a href="stuviewmessage.php">留言</a>
         <table width="200" border="0">
           <tr>
             <td>&nbsp;</td>

@@ -69,7 +69,6 @@ require_once ('calendar.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="style/link.css">
 <title>教师查看</title>
 </head>
 <style type="text/css">
@@ -93,7 +92,7 @@ body {
     <td colspan="3"></tr>
     <tr>
       <td width="201" valign="top"><?php include($left); ?></td>
-      <td width="637" rowspan="2" valign="top"><div align="center"><?php if($totalRows_Recordset1!=0){?>
+      <td width="637" rowspan="2" valign="top"><div align="center">
         <table width="350" border="0" >
           <tr>
             <td colspan="2" align="center">教师列表：</td>
@@ -107,23 +106,23 @@ body {
             </tr>
             <?php do { ?>
             <tr>
-            <td height = "30" class = "di" align="center" width="168"><a class="SelectedLeftMenu" href="teainfo.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
+            <td height = "30" class = "di" align="center" width="168"><a href="teainfo.php?ftid=<?php echo $row_Recordset1['FT_ID']; ?>"><?php echo $row_Recordset1['T_Name']; ?></a></td>
             <td class = "di" align="center" width="172"><?php echo $row_Recordset1['T_Academy']; ?></td>
             </tr>
             <?php } while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); ?>
         </table>
         <table width="299" border="0">
           <tr>
-            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, 0, $queryString_Recordset1); ?>">[第一页]</a>
+            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, 0, $queryString_Recordset1); ?>">[第一页]</a>
               <?php } // Show if not first page ?></td>
-            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, max(0, $pageNum_Recordset1 - 1), $queryString_Recordset1); ?>">[上一页]</a>
+            <td width="65"><?php if ($pageNum_Recordset1 > 0) { // Show if not first page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, max(0, $pageNum_Recordset1 - 1), $queryString_Recordset1); ?>">[上一页]</a>
               <?php } // Show if not first page ?></td>
-            <td width="65"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, min($totalPages_Recordset1, $pageNum_Recordset1 + 1), $queryString_Recordset1); ?>">[下一页]</a>
+            <td width="65"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, min($totalPages_Recordset1, $pageNum_Recordset1 + 1), $queryString_Recordset1); ?>">[下一页]</a>
               <?php } // Show if not last page ?></td>
-            <td width="86"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a class="SelectedLeftMenu" href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
+            <td width="86"><?php if ($pageNum_Recordset1 < $totalPages_Recordset1) { // Show if not last page ?><a href="<?php printf("%s?pageNum_Recordset1=%d%s", $currentPage, $totalPages_Recordset1, $queryString_Recordset1); ?>">[最后一页]</a>
               <?php } // Show if not last page ?></td>
           </tr>
-        </table><?php } else echo "没有搜索结果！请重新输入！";?>
+        </table>
       </div></td>
       <td width="188" rowspan="2" valign="top"><?php 
 	  if($rflag == 2)

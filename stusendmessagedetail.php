@@ -56,7 +56,7 @@ body {
         </tr>
         <tr>
           <td width="53">姓名：</td>
-          <td colspan="2" class="di"><a class="SelectedLeftMenu" href="teainfo.php?ftid=<?php echo $stumessagedetailinfo[FT_ID]; ?>"><?php echo $stumessagedetailinfo[T_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
+          <td colspan="2" class="di"><a href="teainfo.php?ftid=<?php echo $stumessagedetailinfo[FT_ID]; ?>"><?php echo $stumessagedetailinfo[T_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
         </tr>
         <tr>
           <td>学院：</td>
@@ -81,8 +81,8 @@ body {
         </tr>
         <tr>
           <td>&nbsp;</td>
-          <td width="166" align="center"><a class="SelectedLeftMenu" href="stuleavemessage.php?ftid=<?php echo $stumessagedetailinfo[FT_ID]; ?>">再次留言</a></td>
-          <td width="200" align="center"><a class="SelectedLeftMenu" href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
+          <td width="166" align="center"><a href="stuleavemessage.php?ftid=<?php echo $stumessagedetailinfo[FT_ID]; ?>">再次留言</a></td>
+          <td width="200" align="center"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
         </tr>
       </table></td>
       <td width="188" rowspan="2" valign="top"><?php

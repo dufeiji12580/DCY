@@ -7,6 +7,7 @@ if(!$_SESSION[S_Username]){
 ?>
 <?php include("Connections/myconn.php");
 $stuorderdetailfaid = trim($_GET[faid]);
+mysql_query("update apply_form set View = 1 where FA_ID = ".$stuorderdetailfaid,$myconn);
 $sql = "select FT_ID,T_Name,T_Academy,Apply_Time,Order_Time,Order_Info,Reply_Info,State from apply_form natural join teacher where FA_ID = ".$stuorderdetailfaid;
 $result = mysql_query($sql,$myconn); 
 $stuorderdetailinfo = mysql_fetch_array($result);
@@ -57,7 +58,7 @@ body {
         </tr>
         <tr>
           <td width="91">教师：</td>
-          <td colspan="2" class="di"><a class="SelectedLeftMenu" href="teainfo.php?ftid=<?php echo $stuorderdetailinfo[FT_ID]; ?>"><?php echo $stuorderdetailinfo[T_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
+          <td colspan="2" class="di"><a href="teainfo.php?ftid=<?php echo $stuorderdetailinfo[FT_ID]; ?>"><?php echo $stuorderdetailinfo[T_Name];?></a>&nbsp;&nbsp;&nbsp;&nbsp;(点击查看信息)</td>
         </tr>
         <tr>
           <td>学院：</td>
@@ -97,7 +98,7 @@ body {
         </tr>
         <tr>
           <td>&nbsp;</td>
-          <td width="147"><a class="SelectedLeftMenu" href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
+          <td width="147"><a href="<?php echo $_SERVER['HTTP_REFERER'];?>">返回</a></td>
           <td width="168">&nbsp;</td>
         </tr>
       </table></td>

@@ -101,10 +101,10 @@ body {
       <?php if($_SESSION[S_Username])
         echo "<table id=\"Table1\"  width=\"400\" border=\"0\">
           <tr>
-			<td width=\"95\" align=\"center\"><a class=\"SelectedLeftMenu\" href=\"stusaveprefer.php?ftid=$serchteaftid&pre=pre\">关注该教师</a></td>
-            <td width=\"95\" align=\"center\"><a class=\"SelectedLeftMenu\" href=\"stuordertea.php?ftid=$serchteaftid\">预约该教师</a></td>
-            <td width=\"100\" align=\"center\"><a class=\"SelectedLeftMenu\" href=\"stusearchteafreetime.php?ftid=$serchteaftid\">查看空闲时间</a></td>
-            <td width=\"88\" align=\"center\"><a class=\"SelectedLeftMenu\" href=\"stuleavemessage.php?ftid=$serchteaftid\">$ta</a></td>
+			<td width=\"95\" align=\"center\"><a href=\"stusaveprefer.php?ftid=$serchteaftid&pre=pre\">关注该教师</a></td>
+            <td width=\"95\" align=\"center\"><a href=\"stuordertea.php?ftid=$serchteaftid\">预约该教师</a></td>
+            <td width=\"100\" align=\"center\"><a href=\"stusearchteafreetime.php?ftid=$serchteaftid\">查看空闲时间</a></td>
+            <td width=\"88\" align=\"center\"><a href=\"stuleavemessage.php?ftid=$serchteaftid\">$ta</a></td>
           </tr>
       </table>";?>
       </td>

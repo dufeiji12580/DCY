@@ -1,5 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="style/link.css">
+
 <style type="text/css">
 @import url("webfonts/方正舒体/stylesheet.css");
 @import url("webfonts/华文楷体/stylesheet.css");
@@ -53,7 +53,7 @@
       <td>&nbsp;</td>
       <td width="302">&nbsp;</td>
       <td width="103"></td>
-      <td width="46"><div align="center"><span class="index"><a class="SelectedLeftMenu" href="index.php">主页</a></span></div></td>
+      <td width="46"><div align="center"><span class="index"><a href="index.php">主页</a></span></div></td>
       <td width="68">&nbsp;</td>
     </tr>
     <tr>

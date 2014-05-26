@@ -1,4 +1,3 @@
-<link type="text/css" rel="stylesheet" href="style/link.css">
 <style type="text/css">
             table.calendar {
                 
@@ -96,8 +95,8 @@ class Calendar
 		else
 			$url = str_pad($url,strlen($url)+1,"?");
         echo '<tr>';
-	echo '<td><a class="SelectedLeftMenu" href="'.$url.$this->preYearUrl($this->year,$this->month).'">'.'<<'.'</a></td>';
-	echo '<td><a class="SelectedLeftMenu" href="'.$url.$this->preMonthUrl($this->year,$this->month).'">'.'<'.'</a></td>';
+	echo '<td><a href="'.$url.$this->preYearUrl($this->year,$this->month).'">'.'<<'.'</a></td>';
+	echo '<td><a href="'.$url.$this->preMonthUrl($this->year,$this->month).'">'.'<'.'</a></td>';
         echo '<td colspan="3"><form>';
         
         echo '<select name="year" onchange="window.location=\''.$url.'year=\'+this.options[selectedIndex].value+\'&month='.$this->month.'\'">';
@@ -116,8 +115,8 @@ class Calendar
         }
         echo '</select>';        
         echo '</form></td>';        
-	echo '<td><a class="SelectedLeftMenu" href="'.$url.$this->nextMonthUrl($this->year,$this->month).'">'.'>'.'</a></td>';
-	echo '<td><a class="SelectedLeftMenu" href="'.$url.$this->nextYearUrl($this->year,$this->month).'">'.'>>'.'</a></td>';        
+	echo '<td><a href="'.$url.$this->nextMonthUrl($this->year,$this->month).'">'.'>'.'</a></td>';
+	echo '<td><a href="'.$url.$this->nextYearUrl($this->year,$this->month).'">'.'>>'.'</a></td>';        
         echo '</tr>';
     }
     

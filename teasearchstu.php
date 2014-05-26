@@ -61,7 +61,7 @@ function chkuserinput(form){
           <tr>
             <td width="67">&nbsp;</td>
             <td colspan="2"><input type="submit" name="button" id="button" value="确认" /></td>
-            <td width="159"><a class="SelectedLeftMenu" href="teaviewstu.php">点击查询所有学生</a></td>
+            <td width="159"><a href="teaviewstu.php">点击查询所有学生</a></td>
           </tr>
         </table>
       </form></td>
